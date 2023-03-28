@@ -80,11 +80,10 @@ const SummaryForm = () => {
                         </div>
                         <span className='text-primary font-semibold'>
                             {composePrice(
-                                '$',
                                 mustFindType(formData.type).price[
                                     formData.billing
                                 ],
-                                formData.billing === 'Monthly' ? '/mo' : '/yr'
+                                formData.billing
                             )}
                         </span>
                     </div>
@@ -96,11 +95,8 @@ const SummaryForm = () => {
                                         <span>{addon.name}</span>
                                         <span>
                                             {composePrice(
-                                                '$',
                                                 addon.price[formData.billing],
-                                                formData.billing === 'Monthly'
-                                                    ? '/mo'
-                                                    : '/yr'
+                                                formData.billing
                                             )}
                                         </span>
                                     </div>
@@ -117,11 +113,7 @@ const SummaryForm = () => {
                         })`}
                     </p>
                     <span className='text-primary font-semibold text-lg'>
-                        {composePrice(
-                            '$',
-                            getTotalPrice(),
-                            formData.billing === 'Monthly' ? '/mo' : '/yr'
-                        )}
+                        {composePrice(getTotalPrice(), formData.billing)}
                     </span>
                 </div>
             </fieldset>

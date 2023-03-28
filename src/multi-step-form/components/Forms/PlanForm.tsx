@@ -55,11 +55,8 @@ const PlanForm = () => {
                                     label={type.name}
                                     desc={type.desc[formData.billing]}
                                     priceInfo={composePrice(
-                                        '$',
                                         type.price[formData.billing],
-                                        formData.billing === 'Yearly'
-                                            ? '/yr'
-                                            : '/mo'
+                                        formData.billing
                                     )}
                                 />
                             ))}

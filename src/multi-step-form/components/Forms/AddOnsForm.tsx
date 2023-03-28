@@ -46,13 +46,10 @@ const AddOnsForm = () => {
                             <AddOnButton
                                 title={addon.name}
                                 desc={addon.description}
-                                subDesc={composePrice(
-                                    '+$',
+                                subDesc={`+${composePrice(
                                     addon.price[formData.billing],
-                                    formData.billing === 'Monthly'
-                                        ? '/mo'
-                                        : '/yr'
-                                )}
+                                    formData.billing
+                                )}`}
                                 isChecked={field.value}
                                 onClick={() => {
                                     setValue(addon.id, !field.value)

@@ -1,4 +1,5 @@
 import React from 'react'
+import { FormData } from './schemes'
 
 export function mustGetChildId(children: JSX.Element): string {
     const child = React.Children.only(children)
@@ -10,10 +11,15 @@ export function mustGetChildId(children: JSX.Element): string {
     throw Error('missing /id/ in child props')
 }
 
+const BILLING_SIGNS = {
+    Monthly: 'mo',
+    Yearly: 'yr',
+} as const
+
 export function composePrice(
-    prefix: string,
-    price: number,
-    postfix: string
+    value: number,
+    billing: FormData['billing'],
+    currencySign: string = '$'
 ): string {
-    return `${prefix}${price}${postfix}`
+    return `${currencySign}${value}/${BILLING_SIGNS[billing]}`
 }
