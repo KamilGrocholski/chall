@@ -13,9 +13,9 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
             <form
                 {...rest}
                 ref={ref}
-                className='flex flex-col justify-between gap-6 md:block md:w-full'
+                className='flex flex-col justify-between gap-6 md:block md:w-full h-full'
             >
-                <div className='flex w-full flex-col justify-center md:mx-auto md:max-w-[500px] md:justify-between md:py-8'>
+                <div className='flex w-full flex-col h-full justify-center md:mx-auto md:max-w-[500px] md:justify-between md:py-8'>
                     <legend className='mb-1 text-2xl font-bold text-primary md:mb-2 md:text-3xl'>
                         {title}
                     </legend>

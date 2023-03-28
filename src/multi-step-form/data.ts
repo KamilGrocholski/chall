@@ -86,3 +86,8 @@ export const addons = {
         },
     ],
 } as const
+
+export const summary = {
+    title: 'Finishing up',
+    description: 'Double-check everything looks OK before confirming.',
+} as const

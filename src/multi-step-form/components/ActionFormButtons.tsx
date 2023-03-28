@@ -5,7 +5,7 @@ const ActionFormButtons = () => {
     const { prev, isLastStep, isFirstStep } = useFormContext()
 
     return (
-        <section className='absolute bottom-0 left-0 flex h-20 w-full items-center justify-between bg-neutral-white px-4 md:static md:h-16 md:px-0'>
+        <section className='flex absolute bottom-0 md:self-end md:mt-auto left-0 h-20 w-full md:items-end items-center justify-between bg-white md:static'>
             <Button
                 variant='transparent'
                 size='lg'

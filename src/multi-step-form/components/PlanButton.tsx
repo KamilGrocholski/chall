@@ -13,12 +13,12 @@ const PlanButton: React.FC<{
             type='button'
             onClick={onClick}
             className={clsx(
-                'border py-3 px-5 rounded-lg flex md:items-start gap-4 md:flex-col md:justify-between items-center',
+                'border py-2 px-4 rounded-lg flex md:items-start gap-4 md:flex-col md:justify-between items-start',
                 isToggled ? 'border-primary' : 'border-muted'
             )}
         >
             <img src={icon} />
-            <div className='flex flex-col text-left mt-10 w-full h-full'>
+            <div className='flex flex-col items-start md:mt-10 mt-0 w-full h-full'>
                 <legend className='font-semibold text-xl text-primary'>
                     {label}
                 </legend>
