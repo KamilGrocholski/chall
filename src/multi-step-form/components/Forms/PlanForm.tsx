@@ -46,6 +46,7 @@ const PlanForm = () => {
                         <div className='flex flex-col gap-3 md:grid md:grid-cols-3'>
                             {plan.fields.map((type) => (
                                 <PlanButton
+                                    key={type.id}
                                     isToggled={field.value === type.name}
                                     onClick={() => {
                                         setValue('type', type.name)

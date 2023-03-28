@@ -40,6 +40,7 @@ const AddOnsForm = () => {
             <fieldset className='flex flex-col gap-4 md:gap-6'>
                 {addons.fields.map((addon) => (
                     <Controller
+                        key={addon.id}
                         name={addon.id}
                         control={control}
                         render={({ field }) => (

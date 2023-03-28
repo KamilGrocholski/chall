@@ -66,6 +66,7 @@ export const FormContextProvider: React.FC<{ children: JSX.Element }> = ({
 
     const submitForm = () => {
         setIsConfirmed(true)
+        console.log({ formData })
     }
 
     const handleSetFormData = (formData: Partial<FormData>) => {

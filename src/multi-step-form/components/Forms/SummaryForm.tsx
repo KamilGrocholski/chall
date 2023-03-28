@@ -1,9 +1,4 @@
-import {
-    SubmitErrorHandler,
-    SubmitHandler,
-    useForm,
-    Controller,
-} from 'react-hook-form'
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form'
 import Form from '../Form'
 import { FormData, Plan } from '../../schemes'
 import useFormContext from '../../hooks/useFormContext'
@@ -91,7 +86,10 @@ const SummaryForm = () => {
                         {addons.fields.map((addon) => {
                             if (formData[addon.id]) {
                                 return (
-                                    <div className='w-full flex flex-row font-semibold justify-between'>
+                                    <div
+                                        className='w-full flex flex-row font-semibold justify-between'
+                                        key={addon.id}
+                                    >
                                         <span className='text-muted'>
                                             {addon.name}
                                         </span>
@@ -108,7 +106,7 @@ const SummaryForm = () => {
                     </div>
                 </div>
                 <div className='flex items-center justify-between p-4'>
-                    <p className='text-muted'>
+                    <p className='text-muted font-semibold'>
                         Total{' '}
                         {`(per ${
                             formData.billing === 'Yearly' ? 'year' : 'month'
