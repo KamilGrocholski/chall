@@ -18,7 +18,7 @@ const Field = forwardRef<HTMLLabelElement, FieldProps>(
                 ref={ref}
                 className='flex flex-col w-full'
             >
-                <span className='font-semibold text-lg text-blue-900'>
+                <span className='font-semibold text-md mb-1 text-primary'>
                     {label}
                 </span>
                 {children}

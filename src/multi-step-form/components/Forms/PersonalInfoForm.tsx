@@ -5,9 +5,10 @@ import Form from '../Form'
 import TextInput from '../TextInput'
 import { PersonalInfo } from '../../schemes'
 import useFormContext from '../../hooks/useFormContext'
+import { personalInfo } from '../../data'
 
 const PersonalInfoForm = () => {
-    const { next, prev, setFormData, formData } = useFormContext()
+    const { next, setFormData, formData } = useFormContext()
 
     const {
         handleSubmit,
@@ -21,8 +22,8 @@ const PersonalInfoForm = () => {
 
     const onValid: SubmitHandler<PersonalInfo> = (data, e) => {
         e?.preventDefault()
-        next()
         setFormData(data)
+        next()
     }
 
     const onError: SubmitErrorHandler<PersonalInfo> = (data, e) => {
@@ -33,8 +34,8 @@ const PersonalInfoForm = () => {
     return (
         <Form
             onSubmit={handleSubmit(onValid, onError)}
-            title='Personal info'
-            description='description'
+            title={personalInfo.title}
+            description={personalInfo.description}
         >
             <fieldset className='flex flex-col gap-4 md:gap-6'>
                 <Field label='Name' errorMessage={errors.name?.message}>

@@ -27,7 +27,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             <button
                 type='button'
                 disabled={disabled}
-                aria-aria-disabled={disabled}
+                aria-disabled={disabled}
                 {...rest}
                 ref={ref}
                 className={clsx(
@@ -47,7 +47,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = 'Button'
 
 const VARIANT = {
-    primary: 'bg-purple-900 border border-gray-900 text-gray-50',
+    primary: 'bg-primary border border-gray-900 text-gray-50',
     transparent: 'text-gray-500',
 } as const
 

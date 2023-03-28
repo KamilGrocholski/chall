@@ -4,13 +4,15 @@ import {
     useForm,
     Controller,
 } from 'react-hook-form'
-import Button from '../Button'
 import Form from '../Form'
 import { AddOns } from '../../schemes'
 import useFormContext from '../../hooks/useFormContext'
+import AddOnButton from '../AddOnButton'
+import { addons } from '../../data'
+import { composePrice } from '../../utils'
 
 const AddOnsForm = () => {
-    const { next, prev, setFormData, formData } = useFormContext()
+    const { next, setFormData, formData } = useFormContext()
 
     const { handleSubmit, setValue, control } = useForm<AddOns>({
         defaultValues: {
@@ -32,47 +34,65 @@ const AddOnsForm = () => {
     return (
         <Form
             onSubmit={handleSubmit(onValid, onError)}
-            title='Add-Ons'
-            description='description'
+            title={addons.title}
+            description={addons.description}
         >
             <fieldset className='flex flex-col gap-4 md:gap-6'>
                 <Controller
                     name='onlineService'
                     control={control}
                     render={({ field }) => (
-                        <Button
+                        <AddOnButton
+                            title={addons.fields.onlineService.name}
+                            desc={addons.fields.onlineService.description}
+                            subDesc={composePrice(
+                                '+$',
+                                addons.fields.onlineService.price,
+                                '/yr'
+                            )}
+                            isChecked={field.value}
                             onClick={() =>
                                 setValue('onlineService', !field.value)
                             }
-                        >
-                            Online service
-                        </Button>
+                        />
                     )}
                 />
                 <Controller
                     name='largerStorage'
                     control={control}
                     render={({ field }) => (
-                        <Button
+                        <AddOnButton
+                            title={addons.fields.largerStorage.name}
+                            desc={addons.fields.largerStorage.description}
+                            subDesc={composePrice(
+                                '+$',
+                                addons.fields.largerStorage.price,
+                                '/yr'
+                            )}
+                            isChecked={field.value}
                             onClick={() =>
                                 setValue('largerStorage', !field.value)
                             }
-                        >
-                            Larger storage
-                        </Button>
+                        />
                     )}
                 />
                 <Controller
                     name='customizableProfile'
                     control={control}
                     render={({ field }) => (
-                        <Button
+                        <AddOnButton
+                            title={addons.fields.customizableProfile.name}
+                            desc={addons.fields.customizableProfile.description}
+                            subDesc={composePrice(
+                                '+$',
+                                addons.fields.customizableProfile.price,
+                                '/yr'
+                            )}
+                            isChecked={field.value}
                             onClick={() =>
                                 setValue('customizableProfile', !field.value)
                             }
-                        >
-                            Customizable profile
-                        </Button>
+                        />
                     )}
                 />
             </fieldset>
