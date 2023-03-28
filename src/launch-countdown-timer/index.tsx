@@ -28,22 +28,22 @@ const LaunchCountdownTimerPage: React.FC<LaunchCountdownTimerProps> = ({}) => {
                     </h1>
                     <div className='flex flex-row gap-2 lg:gap-8 w-fit h-fit mx-auto'>
                         <NumberBox
-                            num={days}
+                            number={days}
                             unit='days'
                             flip={shouldFlip(prevDays, days)}
                         />
                         <NumberBox
-                            num={hours}
+                            number={hours}
                             unit='hours'
                             flip={shouldFlip(prevHours, hours)}
                         />
                         <NumberBox
-                            num={minutes}
+                            number={minutes}
                             unit='minutes'
                             flip={shouldFlip(prevMinutes, minutes)}
                         />
                         <NumberBox
-                            num={seconds}
+                            number={seconds}
                             unit='seconds'
                             flip={shouldFlip(prevSeconds, seconds)}
                         />

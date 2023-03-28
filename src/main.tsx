@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './Layout'
 import MultistepFormPage from './multi-step-form'
 import LaunchCountdownTimerPage from './launch-countdown-timer'
+import PasswordGeneratorPage from './password-generator'
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
                 element: <MultistepFormPage />,
             },
         ],
+    },
+    {
+        path: '/password-generator',
+        element: <PasswordGeneratorPage />,
     },
 ])
 
