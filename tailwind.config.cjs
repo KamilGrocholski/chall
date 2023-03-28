@@ -11,6 +11,9 @@ module.exports = {
                     "url('./src/multi-step-form/assets/images/bg-sidebar-desktop.svg')",
                 sidebarMobile:
                     "url('./src/multi-step-form/assets/images/bg-sidebar-mobile.svg')",
+                stars: 'url(./src/launch-countdown-timer/images/bg-stars.svg)',
+                patternHills:
+                    'url(./src/launch-countdown-timer/images/pattern-hills.svg)',
             },
 
             colors: {
@@ -20,6 +23,30 @@ module.exports = {
                 third: '#483eff',
                 accent: '#7574e8',
                 accent2: '#eae8ff',
+                lct: {
+                    sky: '#1e1e28',
+                    hills: '#30243a',
+                    counter: {
+                        light: '#343650',
+                        dark: '#2c2c44',
+                        number: '#fa6085',
+                    },
+                },
+            },
+            animation: {
+                flip: 'flip 1s cubic-bezier(0, 0, 0.2, 1) infinite',
+            },
+            keyframes: {
+                flip: {
+                    from: {
+                        transform: 'rotateX(0deg)',
+                        transformOrigin: '50% bottom ',
+                    },
+                    to: {
+                        transform: 'rotateX(180deg)',
+                        transformOrigin: '50% bottom ',
+                    },
+                },
             },
         },
     },

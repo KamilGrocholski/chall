@@ -4,14 +4,19 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './Layout'
 import MultistepFormPage from './multi-step-form'
+import LaunchCountdownTimerPage from './launch-countdown-timer'
 
 const router = createBrowserRouter([
     {
-        path: '/',
+        path: '/launch-countdown-timer',
+        element: <LaunchCountdownTimerPage />,
+    },
+    {
+        path: '/layout',
         element: <Layout />,
         children: [
             {
-                index: true,
+                path: 'multi-step-form',
                 element: <MultistepFormPage />,
             },
         ],
