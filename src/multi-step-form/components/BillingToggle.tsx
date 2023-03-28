@@ -1,11 +1,9 @@
-import useFormContext from '../hooks/useFormContext'
 import { FormData } from '../schemes'
 
 const BillingToggle: React.FC<{
     onClick: () => void
     currentBilling: FormData['billing']
 }> = ({ onClick, currentBilling }) => {
-    const { formData } = useFormContext()
     const activeStyle = (isToggled: boolean): string =>
         isToggled ? 'text-primary' : 'text-muted'
 

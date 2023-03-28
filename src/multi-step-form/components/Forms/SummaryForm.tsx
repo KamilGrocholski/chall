@@ -4,14 +4,14 @@ import {
     useForm,
     Controller,
 } from 'react-hook-form'
-import Button from '../Button'
 import Form from '../Form'
-import { FormData } from '../../schemes'
+import { FormData, Plan } from '../../schemes'
 import useFormContext from '../../hooks/useFormContext'
-import { plan } from '../../data'
+import { addons, plan } from '../../data'
+import { composePrice } from '../../utils'
 
 const SummaryForm = () => {
-    const { next, setFormData, goTo, formData } = useFormContext()
+    const { setFormData, goTo, formData, submitForm } = useFormContext()
 
     const { handleSubmit, setValue, control, formState } = useForm<FormData>({
         defaultValues: {
@@ -22,7 +22,7 @@ const SummaryForm = () => {
     const onValid: SubmitHandler<FormData> = (data, e) => {
         e?.preventDefault()
         setFormData(data)
-        next()
+        submitForm()
     }
 
     const onError: SubmitErrorHandler<FormData> = (data, e) => {
@@ -30,19 +30,28 @@ const SummaryForm = () => {
         console.log({ data })
     }
 
+    function mustFindType(typeName: Plan['type']) {
+        const selectedType = plan.fields.find((type) => type.name === typeName)
+
+        if (!selectedType) throw new Error('missing selected type')
+
+        return selectedType
+    }
+
     function getTotalPrice() {
         let totalPrice = 0
 
-        switch (formData.type) {
-            case 'Arcade':
-                totalPrice += plan.fields.arcade.price
-                return
-            case 'Advanced':
-                totalPrice += plan.fields.advanced.price
-                return
-            case 'Pro':
-                totalPrice += plan.fields.pro.price
-                return
+        const selectedType = mustFindType(formData.type)
+
+        totalPrice += selectedType.price[formData.billing]
+        if (formData.onlineService) {
+            totalPrice += addons.fields[0].price[formData.billing]
+        }
+        if (formData.largerStorage) {
+            totalPrice += addons.fields[1].price[formData.billing]
+        }
+        if (formData.customizableProfile) {
+            totalPrice += addons.fields[2].price[formData.billing]
         }
 
         return totalPrice
@@ -55,48 +64,65 @@ const SummaryForm = () => {
             description='description'
         >
             <fieldset className='flex flex-col gap-4 md:gap-6'>
-                <div className='mb-4 flex flex-col rounded-lg bg-neutral-alabaster p-4'>
-                    <div className='flex items-center justify-between'>
-                        <div>
-                            <p className='font-semibold capitalize text-primary-marine-blue'>
-                                {`${formData.type} (${
-                                    formData.billing === 'Yearly'
-                                        ? 'Yearly'
-                                        : 'Monthly'
-                                })`}
+                <div className='mb-4 flex flex-col rounded-lg bg-gray-100 p-4 divide-y divide-muted'>
+                    <div className='flex items-center justify-between mb-3'>
+                        <div className='flex items-start flex-col'>
+                            <p className='font-semibold capitalize text-accent'>
+                                {`${formData.type} (${formData.billing})`}
                             </p>
                             <button
                                 type='button'
-                                className='w-fit cursor-pointer capitalize text-neutral-cool-gray underline transition-colors hover:text-primary-purplish-blue'
-                                onClick={() => goTo(2)}
+                                className='w-fit cursor-pointer capitalize text-muted underline transition-colors hover:text-primary'
+                                onClick={() => goTo(1)}
                             >
                                 change
                             </button>
                         </div>
-                        {/* {monthYearPlan} */}
+                        <span className='text-primary font-semibold'>
+                            {composePrice(
+                                '$',
+                                mustFindType(formData.type).price[
+                                    formData.billing
+                                ],
+                                formData.billing === 'Monthly' ? '/mo' : '/yr'
+                            )}
+                        </span>
                     </div>
-                    {/* {selectedAddOns.length !== 0 && <hr className='my-4' />}
-                    {selectedAddOns.map((addOn) => {
-                        return (
-                            <SummarySelectedAddOns
-                                key={addOn.id}
-                                addOnName={addOn.title}
-                                monthlySub={addOn.monthlySubscriptionAddition}
-                                yearlySub={addOn.yearlySubscriptionAddition}
-                                isYearlySub={yearlySubscription}
-                            />
-                        )
-                    })} */}
+                    <div className='mb-3'>
+                        {addons.fields.map((addon) => {
+                            if (formData[addon.id]) {
+                                return (
+                                    <div className='w-full flex flex-row justify-between'>
+                                        <span>{addon.name}</span>
+                                        <span>
+                                            {composePrice(
+                                                '$',
+                                                addon.price[formData.billing],
+                                                formData.billing === 'Monthly'
+                                                    ? '/mo'
+                                                    : '/yr'
+                                            )}
+                                        </span>
+                                    </div>
+                                )
+                            }
+                        })}
+                    </div>
                 </div>
-
                 <div className='flex items-center justify-between p-4'>
-                    <p className='text-neutral-cool-gray'>
+                    <p className='text-muted'>
                         Total{' '}
                         {`(per ${
                             formData.billing === 'Yearly' ? 'year' : 'month'
                         })`}
                     </p>
-                    {getTotalPrice()}
+                    <span className='text-primary font-semibold text-lg'>
+                        {composePrice(
+                            '$',
+                            getTotalPrice(),
+                            formData.billing === 'Monthly' ? '/mo' : '/yr'
+                        )}
+                    </span>
                 </div>
             </fieldset>
         </Form>

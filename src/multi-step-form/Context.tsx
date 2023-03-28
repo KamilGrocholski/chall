@@ -1,9 +1,11 @@
 import { createContext, useState } from 'react'
 import { FormData } from './schemes'
+import { useForm } from 'react-hook-form'
 
 export const tabs = ['Your info', 'Select plan', 'Add-ons', 'Summary'] as const
 
 type FormContext = {
+    isConfirmed: boolean
     step: number
     formData: FormData
     setFormData: (data: Partial<FormData>) => void
@@ -20,6 +22,8 @@ export const FormContext = createContext({} as FormContext)
 export const FormContextProvider: React.FC<{ children: JSX.Element }> = ({
     children,
 }) => {
+    const [isConfirmed, setIsConfirmed] = useState(false)
+
     const [formData, setFormData] = useState<FormData>({
         name: '',
         email: '',
@@ -61,7 +65,7 @@ export const FormContextProvider: React.FC<{ children: JSX.Element }> = ({
     }
 
     const submitForm = () => {
-        console.log(formData)
+        setIsConfirmed(true)
     }
 
     const handleSetFormData = (formData: Partial<FormData>) => {
@@ -74,6 +78,7 @@ export const FormContextProvider: React.FC<{ children: JSX.Element }> = ({
     return (
         <FormContext.Provider
             value={{
+                isConfirmed,
                 formData,
                 step,
                 next,

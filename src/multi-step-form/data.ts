@@ -10,46 +10,79 @@ export const personalInfo = {
 export const plan = {
     title: 'Select a plan',
     description: 'You have the option of monthyl or yearly billing.',
-    fields: {
-        arcade: {
-            icon: Arcade,
+    fields: [
+        {
+            id: 'arcade',
             name: 'Arcade',
-            price: 90,
-            free: '2 months free',
+            icon: Arcade,
+            price: {
+                Monthly: 9,
+                Yearly: 90,
+            },
+            desc: {
+                Monthly: undefined,
+                Yearly: '2 months free',
+            },
         },
-        advanced: {
-            icon: Advanced,
+        {
+            id: 'advanced',
             name: 'Advanced',
-            price: 120,
-            free: '2 months free',
+            icon: Advanced,
+            price: {
+                Monthly: 12,
+                Yearly: 120,
+            },
+            desc: {
+                Monthly: undefined,
+                Yearly: '2 months free',
+            },
         },
-        pro: {
-            icon: Pro,
+        {
+            id: 'pro',
             name: 'Pro',
-            price: 150,
-            free: '2 months free',
+            icon: Pro,
+            price: {
+                Monthly: 15,
+                Yearly: 150,
+            },
+            desc: {
+                Monthly: undefined,
+                Yearly: '2 months free',
+            },
         },
-    },
-}
+    ],
+} as const
 
 export const addons = {
     title: 'Pick add-ons',
     description: 'Add-ons help enhance your gaming experience.',
-    fields: {
-        onlineService: {
-            price: 10,
+    fields: [
+        {
+            id: 'onlineService',
             name: 'Online service',
             description: 'Access to multiplayer games',
+            price: {
+                Monthly: 1,
+                Yearly: 10,
+            },
         },
-        largerStorage: {
-            price: 20,
+        {
+            id: 'largerStorage',
             name: 'Larger storage',
-            description: 'Access to multiplayer games',
+            description: 'Extra 1TB of cloud save',
+            price: {
+                Monthly: 2,
+                Yearly: 20,
+            },
         },
-        customizableProfile: {
-            price: 20,
+        {
+            id: 'customizableProfile',
             name: 'Customizable profile',
-            description: 'Access to multiplayer games',
+            description: 'Custom theme on your profile',
+            price: {
+                Monthly: 2,
+                Yearly: 20,
+            },
         },
-    },
-}
+    ],
+} as const

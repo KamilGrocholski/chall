@@ -22,7 +22,11 @@ const Field = forwardRef<HTMLLabelElement, FieldProps>(
                     {label}
                 </span>
                 {children}
-                {errorMessage ? <small>{errorMessage}</small> : null}
+                {errorMessage ? (
+                    <small className='text-sm text-red-500 font-semibold'>
+                        {errorMessage}
+                    </small>
+                ) : null}
             </label>
         )
     }

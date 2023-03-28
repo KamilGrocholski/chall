@@ -2,22 +2,22 @@ import useFormContext from '../../hooks/useFormContext'
 import { tabs } from '../../Context'
 import PersonalInfoForm from './PersonalInfoForm'
 import PlanForm from './PlanForm'
-import Button from '../Button'
 import AddOnsForm from './AddOnsForm'
 import SummaryForm from './SummaryForm'
 
-import BgSidebarDesktop from '../../assets/images/bg-sidebar-desktop.svg'
-import BgSidebarMobile from '../../assets/images/bg-sidebar-mobile.svg'
 import Sidebar from '../Sidebar'
+import ThankYou from '../ThankYou'
 
 const MultistepForm = () => {
-    const { goTo, step } = useFormContext()
+    const { step, isConfirmed } = useFormContext()
 
     return (
         <>
             <Sidebar />
-            <section className='w-full'>
-                {tabs[step] === 'Your info' ? (
+            <section className='w-full min-h-[600px] px-5'>
+                {isConfirmed ? (
+                    <ThankYou />
+                ) : tabs[step] === 'Your info' ? (
                     <PersonalInfoForm />
                 ) : tabs[step] === 'Select plan' ? (
                     <PlanForm />

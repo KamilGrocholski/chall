@@ -10,11 +10,12 @@ import useFormContext from '../../hooks/useFormContext'
 import PlanButton from '../PlanButton'
 import { plan } from '../../data'
 import BillingToggle from '../BillingToggle'
+import { composePrice } from '../../utils'
 
 const PlanForm = () => {
     const { next, setFormData, formData } = useFormContext()
 
-    const { handleSubmit, setValue, control } = useForm<Plan>({
+    const { handleSubmit, setValue, control, getValues } = useForm<Plan>({
         defaultValues: {
             ...formData,
         },
@@ -42,31 +43,26 @@ const PlanForm = () => {
                     name='type'
                     control={control}
                     render={({ field }) => (
-                        <div className='grid grid-cols-3 gap-5'>
-                            <PlanButton
-                                isToggled={field.value === 'Arcade'}
-                                onClick={() => setValue('type', 'Arcade')}
-                                icon={plan.fields.arcade.icon}
-                                label={plan.fields.arcade.name}
-                                desc={plan.fields.arcade.free}
-                                price={plan.fields.arcade.price}
-                            />
-                            <PlanButton
-                                isToggled={field.value === 'Advanced'}
-                                onClick={() => setValue('type', 'Advanced')}
-                                icon={plan.fields.advanced.icon}
-                                label={plan.fields.advanced.name}
-                                desc={plan.fields.advanced.free}
-                                price={plan.fields.advanced.price}
-                            />
-                            <PlanButton
-                                isToggled={field.value === 'Pro'}
-                                onClick={() => setValue('type', 'Pro')}
-                                icon={plan.fields.pro.icon}
-                                label={plan.fields.pro.name}
-                                desc={plan.fields.pro.free}
-                                price={plan.fields.pro.price}
-                            />
+                        <div className='flex flex-col gap-3 md:grid md:grid-cols-3'>
+                            {plan.fields.map((type) => (
+                                <PlanButton
+                                    isToggled={field.value === type.name}
+                                    onClick={() => {
+                                        setValue('type', type.name)
+                                        setFormData(getValues())
+                                    }}
+                                    icon={type.icon}
+                                    label={type.name}
+                                    desc={type.desc[formData.billing]}
+                                    priceInfo={composePrice(
+                                        '$',
+                                        type.price[formData.billing],
+                                        formData.billing === 'Yearly'
+                                            ? '/yr'
+                                            : '/mo'
+                                    )}
+                                />
+                            ))}
                         </div>
                     )}
                 />
@@ -76,14 +72,15 @@ const PlanForm = () => {
                     render={({ field }) => (
                         <BillingToggle
                             currentBilling={field.value}
-                            onClick={() =>
+                            onClick={() => {
                                 setValue(
                                     'billing',
                                     field.value === 'Monthly'
                                         ? 'Yearly'
                                         : 'Monthly'
                                 )
-                            }
+                                setFormData(getValues())
+                            }}
                         />
                     )}
                 />

@@ -1,11 +1,11 @@
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form'
-import Button from '../Button'
 import Field from '../Field'
 import Form from '../Form'
 import TextInput from '../TextInput'
-import { PersonalInfo } from '../../schemes'
+import { PersonalInfo, personalInfoSchema } from '../../schemes'
 import useFormContext from '../../hooks/useFormContext'
 import { personalInfo } from '../../data'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 const PersonalInfoForm = () => {
     const { next, setFormData, formData } = useFormContext()
@@ -18,6 +18,7 @@ const PersonalInfoForm = () => {
         defaultValues: {
             ...formData,
         },
+        resolver: zodResolver(personalInfoSchema),
     })
 
     const onValid: SubmitHandler<PersonalInfo> = (data, e) => {
