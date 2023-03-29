@@ -32,6 +32,12 @@ module.exports = {
                         number: '#fa6085',
                     },
                 },
+                pg: {
+                    light: '#24232b',
+                    dark: '#18171f',
+                    muted: '#4d4c54',
+                    primary: '#a4ffaf',
+                },
             },
             animation: {
                 flip: 'flip 1s cubic-bezier(0, 0, 0.2, 1) infinite',
@@ -50,5 +56,5 @@ module.exports = {
             },
         },
     },
-    plugins: [],
+    plugins: [require('@tailwindcss/forms')],
 }

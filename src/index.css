@@ -4,10 +4,55 @@
 
 @layer base {
     html {
-        font-family: 'Bank Gothic', sans-serif;
+        /* font-family: 'Bank Gothic', sans-serif; */
     }
 
     body {
         @apply bg-slate-300;
+    }
+}
+
+@layer components {
+    .slider {
+        background: theme('colors.pg.dark');
+        height: 7px;
+        appearance: none;
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .slider:focus {
+        outline: none;
+    }
+    .slider::-webkit-slider-thumb {
+        background-color: theme('colors.white');
+        border: 0;
+        border-radius: 50%;
+        display: block;
+        width: 18px;
+        height: 18px;
+        transition: background-color 0.15s linear, border 0.15s ease-in-out;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+    .slider:focus::-webkit-slider-thumb,
+    .slider::-webkit-slider-thumb:hover {
+        background-color: theme('colors.pg.light');
+        border: 2px solid theme('colors.pg.primary');
+    }
+    .slider::-moz-range-thumb {
+        background-color: theme('colors.white');
+        border: 0;
+        border-radius: 50%;
+        display: block;
+        width: 28px;
+        height: 28px;
+        transition: background-color 0.15s linear, border 0.15s ease-in-out;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+    .slider:focus::-moz-range-thumb,
+    .slider::-moz-range-thumb:hover {
+        background-color: theme('colors.pg.light');
+        border: 2px solid theme('colors.pg.primary');
     }
 }
