@@ -1,4 +1,6 @@
 import { createContext, useReducer, useState } from 'react'
+import { Color, Font } from '../utils'
+import { useSettings } from '../hooks/useSettings'
 
 export type TimeSettings = {
     pomodoro: number
@@ -6,47 +8,39 @@ export type TimeSettings = {
     longBreak: number
 }
 
-export type FontSettings = 'A' | 'B' | 'C'
+export type FontSettings = Font
 
-export type ColorSettings = 'red' | 'sky' | 'purple'
+export type ColorSettings = Color
 
 export type Settings = {
     time: TimeSettings
-    setTime: React.Dispatch<Partial<TimeSettings>>
     font: FontSettings
-    setFont: React.Dispatch<React.SetStateAction<FontSettings>>
     color: ColorSettings
+}
+
+export type SettingsSetters = {
+    setFont: React.Dispatch<React.SetStateAction<FontSettings>>
+    setTime: React.Dispatch<Partial<TimeSettings>>
     setColor: React.Dispatch<React.SetStateAction<ColorSettings>>
 }
 
-export const SettingsContext = createContext({} as Settings)
+export const SettingsContext = createContext({} as Settings & SettingsSetters)
 
 export const SettingsProvider: React.FC<{ children: React.ReactElement }> = ({
     children,
 }) => {
-    const [time, setTime] = useReducer<
-        (prev: TimeSettings, update: Partial<TimeSettings>) => TimeSettings
-    >((prev, update) => ({ ...prev, ...update }), {
-        pomodoro: 0,
-        shortBreak: 0,
-        longBreak: 0,
+    const settings = useSettings({
+        time: {
+            pomodoro: 0,
+            shortBreak: 0,
+            longBreak: 0,
+        },
+        font: 'A',
+        color: 'red',
     })
 
-    const [font, setFont] = useState<FontSettings>('A')
-
-    const [color, setColor] = useState<ColorSettings>('red')
-
     return (
-        <SettingsContext.Provider
-            value={{
-                time,
-                setTime,
-                font,
-                setFont,
-                color,
-                setColor,
-            }}
-        >
+        <SettingsContext.Provider value={settings}>
             {children}
         </SettingsContext.Provider>
     )
