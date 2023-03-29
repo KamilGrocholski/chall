@@ -38,6 +38,19 @@ module.exports = {
                     muted: '#4d4c54',
                     primary: '#a4ffaf',
                 },
+                p: {
+                    text: '#2f304',
+                    gray: {
+                        light: '#eef1fa',
+                        dark: '#151a30',
+                        muted: '#abaaaf',
+                    },
+                    color: {
+                        red: '#f4726c',
+                        blue: '#6ef3f7',
+                        purple: '#d981f9',
+                    },
+                },
             },
             animation: {
                 flip: 'flip 1s cubic-bezier(0, 0, 0.2, 1) infinite',

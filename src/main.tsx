@@ -6,6 +6,7 @@ import Layout from './Layout'
 import MultistepFormPage from './multi-step-form'
 import LaunchCountdownTimerPage from './launch-countdown-timer'
 import PasswordGeneratorPage from './password-generator'
+import PomodoroPage from './pomodoro'
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
     {
         path: '/password-generator',
         element: <PasswordGeneratorPage />,
+    },
+    {
+        path: '/pomodoro',
+        element: <PomodoroPage />,
     },
 ])
 
