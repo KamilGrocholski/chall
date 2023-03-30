@@ -27,7 +27,7 @@ const SettingsModal: React.FC<{ isOpen: boolean; close(): void }> = ({
         <Modal isOpen={isOpen} close={close}>
             <form
                 onSubmit={handleSubmit}
-                className='relative bg-white rounded-lg text-p-gray-dark w-fit'
+                className='relative bg-white rounded-3xl text-p-gray-dark w-fit'
             >
                 <div className='flex w-full justify-between px-7 py-7'>
                     <h1 className='text-3xl font-bold'>Settings</h1>
@@ -40,7 +40,7 @@ const SettingsModal: React.FC<{ isOpen: boolean; close(): void }> = ({
 
                 <div className='px-7 flex flex-col space-y-4 pb-12 pt-5'>
                     <article>
-                        <h2 className='text-lg font-bold mb-3 tracking-widest'>
+                        <h2 className='font-bold mb-3 tracking-widest uppercase'>
                             Time (Minutes)
                         </h2>
                         <fieldset className='grid grid-cols-3 gap-3'>
@@ -93,7 +93,7 @@ const SettingsModal: React.FC<{ isOpen: boolean; close(): void }> = ({
                                         : 'bg-p-gray-light text-p-gray-dark'
                                 )}
                             >
-                                A
+                                Aa
                             </OptionButton>
                             <OptionButton
                                 onClick={() => setFont('B')}
@@ -103,7 +103,7 @@ const SettingsModal: React.FC<{ isOpen: boolean; close(): void }> = ({
                                         : 'bg-p-gray-light text-p-gray-dark'
                                 )}
                             >
-                                B
+                                Aa
                             </OptionButton>
                             <OptionButton
                                 onClick={() => setFont('C')}
@@ -113,7 +113,7 @@ const SettingsModal: React.FC<{ isOpen: boolean; close(): void }> = ({
                                         : 'bg-p-gray-light text-p-gray-dark'
                                 )}
                             >
-                                C
+                                Aa
                             </OptionButton>
                         </fieldset>
                     </article>
@@ -152,7 +152,7 @@ const SettingsModal: React.FC<{ isOpen: boolean; close(): void }> = ({
                     <button
                         type='submit'
                         className={clsx(
-                            'px-5 py-1 w-fit mx-auto flex rounded-3xl text-xl font-semibold',
+                            'px-10 py-3 w-fit mx-auto flex rounded-3xl text-white font-semibold',
                             COLOR[originSettings.color].bg
                         )}
                     >
@@ -180,7 +180,7 @@ const OptionButton: React.FC<OptionButtonProps> = ({
             type='button'
             onClick={onClick}
             className={clsx(
-                'rounded-full h-10 w-10 flex items-center justify-center text-2xl',
+                'rounded-full h-8 w-8 flex items-center justify-center',
                 className
             )}
         >

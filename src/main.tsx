@@ -7,6 +7,7 @@ import MultistepFormPage from './multi-step-form'
 import LaunchCountdownTimerPage from './launch-countdown-timer'
 import PasswordGeneratorPage from './password-generator'
 import PomodoroPage from './pomodoro'
+import { SettingsProvider } from './pomodoro/context/SettingsContext'
 
 const router = createBrowserRouter([
     {
@@ -29,7 +30,11 @@ const router = createBrowserRouter([
     },
     {
         path: '/pomodoro',
-        element: <PomodoroPage />,
+        element: (
+            <SettingsProvider>
+                <PomodoroPage />
+            </SettingsProvider>
+        ),
     },
 ])
 
