@@ -20,7 +20,7 @@ const SettingsModal: React.FC<{ isOpen: boolean; close(): void }> = ({
         e.preventDefault()
         originSettings.setColor(color)
         originSettings.setFont(font)
-        originSettings.setTime(time)
+        originSettings.setTime({ ...time })
     }
 
     return (

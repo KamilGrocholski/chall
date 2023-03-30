@@ -24,3 +24,12 @@ export const FONT = {
     B: {},
     C: {},
 } as const
+
+export function getMinutes(seconds: number) {
+    return Math.floor(seconds / 60)
+}
+
+export function getSeconds(seconds: number) {
+    const minutes = Math.floor(seconds / 60) * 60
+    return seconds - minutes
+}

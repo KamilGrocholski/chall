@@ -5,9 +5,8 @@ function getOrCreateElementById(id: string): HTMLElement {
     let element = document.getElementById(id)
 
     if (!element) {
-        const newElement = document.createElement('div')
-        newElement.setAttribute('id', id)
-        element = newElement
+        element = document.createElement('div')
+        element.setAttribute('id', id)
     }
 
     return element

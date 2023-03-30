@@ -31,9 +31,9 @@ export const SettingsProvider: React.FC<{ children: React.ReactElement }> = ({
 }) => {
     const settings = useSettings({
         time: {
-            pomodoro: 0,
-            shortBreak: 0,
-            longBreak: 0,
+            pomodoro: 1,
+            shortBreak: 5,
+            longBreak: 15,
         },
         font: 'A',
         color: 'red',

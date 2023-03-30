@@ -28,7 +28,7 @@ const Circle: React.FC<CircleProps> = ({ percent, children }) => {
                     cy='145'
                     r={radius + 10}
                     stroke='url(#gradient)'
-                    stroke-width='28'
+                    strokeWidth='28'
                     fill='transparent'
                     className='fill-p-gray-dark'
                 />
@@ -41,11 +41,11 @@ const Circle: React.FC<CircleProps> = ({ percent, children }) => {
                         y2='300%'
                         id='gradient'
                     >
-                        <stop offset='0%' stop-color='currentColor' />
+                        <stop offset='0%' stopColor='currentColor' />
                         <stop
-                            stop-opacity='0'
+                            stopOpacity='0'
                             offset='100%'
-                            stop-color='darkblue'
+                            stopColor='darkblue'
                         />
                     </linearGradient>
                 </defs>
@@ -55,7 +55,7 @@ const Circle: React.FC<CircleProps> = ({ percent, children }) => {
                     cy='145'
                     r={radius}
                     stroke='currentColor'
-                    stroke-width='7'
+                    strokeWidth='7'
                     fill='transparent'
                     strokeDasharray={circumference}
                     strokeDashoffset={offset}
