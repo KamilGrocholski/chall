@@ -25,11 +25,14 @@ export const FONT = {
     C: {},
 } as const
 
-export function getMinutes(seconds: number) {
-    return Math.floor(seconds / 60)
+export const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60)
+    const seconds = time % 60
+    return `${minutes.toString().padStart(2, '0')}:${seconds
+        .toString()
+        .padStart(2, '0')}`
 }
 
-export function getSeconds(seconds: number) {
-    const minutes = Math.floor(seconds / 60) * 60
-    return seconds - minutes
+export function getPercent(value: number, of: number): number {
+    return (value / of) * 100
 }

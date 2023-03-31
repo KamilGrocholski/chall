@@ -2,7 +2,7 @@ import { useState } from 'react'
 import SettingsModal from './components/SettingsModal'
 import Circle from './components/Circle'
 import clsx from 'clsx'
-import { COLOR, getMinutes, getSeconds } from './utils'
+import { COLOR, formatTime, getPercent } from './utils'
 import useSettingsContext from './hooks/useSettings'
 import { IoMdSettings } from 'react-icons/io'
 import usePomodoro from './hooks/usePomodoro'
@@ -10,11 +10,27 @@ import usePomodoro from './hooks/usePomodoro'
 const PomodoroPage = () => {
     const [isSettingsOpen, setIsSettingsOpen] = useState(false)
     const { color, time } = useSettingsContext()
-    const { pause, start, seconds, timerName, isRunning } = usePomodoro(
-        time.pomodoro,
-        time.shortBreak,
-        time.longBreak
-    )
+    const pomodoro = usePomodoro({
+        workTime: time.pomodoro * 60,
+        shortBreakTime: time.shortBreak * 60,
+        longBreakTime: time.longBreak * 60,
+        longBreakInterval: 4,
+    })
+
+    const handleWorkClick = () => {
+        pomodoro.stopTimer()
+        pomodoro.startTimer('work')
+    }
+
+    const handleShortBreakClick = () => {
+        pomodoro.stopTimer()
+        pomodoro.startTimer('shortBreak')
+    }
+
+    const handleLongBreakClick = () => {
+        pomodoro.stopTimer()
+        pomodoro.startTimer('longBreak')
+    }
 
     return (
         <div className='relative h-screen bg-gray-800 p-6'>
@@ -28,52 +44,66 @@ const PomodoroPage = () => {
                     pomodoro
                 </span>
                 <div className='flex flex-row bg-p-gray-dark gap-3 rounded-3xl p-1.5'>
-                    <div
+                    <button
+                        onClick={handleWorkClick}
                         className={clsx(
-                            timerName === 'pomodoro'
+                            pomodoro.phase === 'work'
                                 ? `${COLOR[color].bg} text-p-gray-dark`
                                 : 'text-p-gray-muted',
                             'rounded-3xl px-4 py-2.5 font-semibold'
                         )}
                     >
                         pomodoro
-                    </div>
-                    <div
+                    </button>
+                    <button
+                        onClick={handleShortBreakClick}
                         className={clsx(
-                            timerName === 'shortBreak'
+                            pomodoro.phase === 'shortBreak'
                                 ? `${COLOR[color].bg} text-p-gray-dark`
                                 : 'text-p-gray-muted',
                             'rounded-3xl px-4 py-2.5 font-semibold'
                         )}
                     >
                         short break
-                    </div>
-                    <div
+                    </button>
+                    <button
+                        onClick={handleLongBreakClick}
                         className={clsx(
-                            timerName === 'longBreak'
+                            pomodoro.phase === 'longBreak'
                                 ? `${COLOR[color].bg} text-p-gray-dark`
                                 : 'text-p-gray-muted',
                             'rounded-3xl px-4 py-2.5 font-semibold'
                         )}
                     >
                         long break
-                    </div>
+                    </button>
                 </div>
             </header>
 
             <div className='h-[70%]'>
-                <Circle percent={50}>
+                <Circle
+                    percent={getPercent(
+                        pomodoro.timeLeft,
+                        pomodoro.phase === 'work'
+                            ? time.pomodoro * 60
+                            : pomodoro.phase === 'longBreak'
+                            ? time.longBreak * 60
+                            : time.shortBreak * 60
+                    )}
+                >
                     <div className='text-p-gray-light flex flex-col space-y-8 pt-8'>
-                        <span className='text-6xl font-bold flex flex-row items-center'>
-                            <span>{getMinutes(seconds)}</span>
-                            <span>:</span>
-                            <span>{getSeconds(seconds)}</span>
+                        <span className='text-5xl font-bold flex flex-row items-center'>
+                            {formatTime(pomodoro.timeLeft)}
                         </span>
                         <button
-                            className='tracking-widest uppercase text-xs'
-                            onClick={isRunning ? pause : start}
+                            className='tracking-[0.5rem] uppercase text-xs font-bold'
+                            onClick={
+                                pomodoro.isRunning
+                                    ? pomodoro.stopTimer
+                                    : () => pomodoro.startTimer()
+                            }
                         >
-                            {isRunning ? 'Pause' : 'Start'}
+                            {pomodoro.isRunning ? 'pause' : 'start'}
                         </button>
                     </div>
                 </Circle>

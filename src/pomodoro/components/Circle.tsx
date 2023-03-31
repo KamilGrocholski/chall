@@ -60,7 +60,10 @@ const Circle: React.FC<CircleProps> = ({ percent, children }) => {
                     strokeDasharray={circumference}
                     strokeDashoffset={offset}
                     strokeLinecap='round'
-                    className={clsx(COLOR[color].text)}
+                    className={clsx(
+                        COLOR[color].text,
+                        'transition-all ease-in-out duration-1000'
+                    )}
                 />
             </svg>
             <div className='absolute'>{children}</div>

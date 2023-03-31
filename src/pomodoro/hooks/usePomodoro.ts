@@ -1,60 +1,112 @@
-import { useReducer, useState } from 'react'
-import useCounter from './useCounter'
-import useTimer from './useTimer'
-import { TimeSettings } from '../context/SettingsContext'
+import { useState, useEffect, useRef } from 'react'
 
-export default function usePomodoro(
-    pomodoroTimeInMin: number,
-    shortBreakInMin: number,
-    longBreakInMin: number
-) {
-    const { count, increment } = useCounter()
+type TimerPhase = 'work' | 'shortBreak' | 'longBreak'
+
+interface PomodoroConfig {
+    workTime: number
+    shortBreakTime: number
+    longBreakTime: number
+    longBreakInterval: number
+}
+
+interface PomodoroState {
+    phase: TimerPhase
+    timeLeft: number
+    isRunning: boolean
+}
+
+type PomodoroHook = PomodoroState & {
+    startTimer: (phase?: TimerPhase) => void
+    stopTimer: () => void
+}
+
+const usePomodoro = (config: PomodoroConfig): PomodoroHook => {
+    const { workTime, shortBreakTime, longBreakTime, longBreakInterval } =
+        config
+
+    const [phase, setPhase] = useState<TimerPhase>('work')
+    const [timeLeft, setTimeLeft] = useState(workTime)
     const [isRunning, setIsRunning] = useState(false)
-    const [timerName, setTimerName] = useState<keyof TimeSettings>('pomodoro')
-    const [timers, setTimers] = useReducer<
-        (prev: TimeSettings, update: Partial<TimeSettings>) => TimeSettings
-    >((prev, update) => ({ ...prev, ...update }), {
-        pomodoro: pomodoroTimeInMin,
-        shortBreak: shortBreakInMin,
-        longBreak: longBreakInMin,
-    })
-    const { start, reset, pause, seconds } = useTimer(
-        timers[timerName] * 60,
-        handleOnEnd
-    )
 
-    function handlePause() {
-        pause()
+    const timerRef = useRef<number>()
+
+    const switchToNextPhase = () => {
         setIsRunning(false)
-    }
 
-    function handleOnEnd() {
-        increment()
-        if (timerName === 'pomodoro') {
-            if (count % 2 === 0) {
-                setTimerName('shortBreak')
-                setIsRunning(true)
-                start()
-                return
-            }
-            if (count % 3 === 0) {
-                setTimerName('longBreak')
-                setIsRunning(true)
-                start()
-                return
-            }
+        if (phase === 'work') {
+            setPhase('shortBreak')
+            setTimeLeft(shortBreakTime)
+        } else if (phase === 'shortBreak') {
+            setPhase('work')
+            setTimeLeft(workTime)
         } else {
-            setIsRunning(true)
-            setTimerName('pomodoro')
-            start()
+            setPhase('work')
+            setTimeLeft(workTime)
         }
     }
 
-    return {
-        seconds,
-        start,
-        pause: handlePause,
-        timerName,
-        isRunning,
+    const startTimer = () => {
+        setIsRunning(true)
+        timerRef.current = setInterval(() => {
+            setTimeLeft((prevTimeLeft) => prevTimeLeft - 1)
+        }, 1000)
     }
+
+    const stopTimer = () => {
+        setIsRunning(false)
+
+        if (timerRef.current) {
+            clearInterval(timerRef.current)
+            timerRef.current = undefined
+        }
+    }
+
+    useEffect(() => {
+        if (timeLeft === 0) {
+            switchToNextPhase()
+        }
+    }, [timeLeft])
+
+    useEffect(() => {
+        if (phase === 'work') {
+            setTimeLeft(workTime)
+        } else if (phase === 'shortBreak') {
+            setTimeLeft(shortBreakTime)
+        } else {
+            setTimeLeft(longBreakTime)
+        }
+    }, [phase, workTime, shortBreakTime, longBreakTime])
+
+    useEffect(() => {
+        if (phase === 'work' && isRunning && timeLeft === workTime) {
+            stopTimer()
+            startTimer()
+        } else if (
+            phase === 'shortBreak' &&
+            isRunning &&
+            timeLeft === shortBreakTime
+        ) {
+            stopTimer()
+            startTimer()
+        } else if (
+            phase === 'longBreak' &&
+            isRunning &&
+            timeLeft === longBreakTime
+        ) {
+            stopTimer()
+            startTimer()
+        }
+    }, [
+        phase,
+        isRunning,
+        timeLeft,
+        workTime,
+        shortBreakTime,
+        longBreakTime,
+        longBreakInterval,
+    ])
+
+    return { phase, timeLeft, isRunning, startTimer, stopTimer }
 }
+
+export default usePomodoro
