@@ -8,6 +8,8 @@ import LaunchCountdownTimerPage from './launch-countdown-timer'
 import PasswordGeneratorPage from './password-generator'
 import PomodoroPage from './pomodoro'
 import { SettingsProvider } from './pomodoro/context/SettingsContext'
+import InteractiveCardDetailsFormPage from './interactive-card-details-form'
+import { CardDetailsProvider } from './interactive-card-details-form/context/CardDetailsContext'
 
 const router = createBrowserRouter([
     {
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
             <SettingsProvider>
                 <PomodoroPage />
             </SettingsProvider>
+        ),
+    },
+    {
+        path: '/interactive-card-details-form',
+        element: (
+            <CardDetailsProvider>
+                <InteractiveCardDetailsFormPage />
+            </CardDetailsProvider>
         ),
     },
 ])

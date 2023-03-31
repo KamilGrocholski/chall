@@ -14,6 +14,18 @@ module.exports = {
                 stars: 'url(./src/launch-countdown-timer/images/bg-stars.svg)',
                 patternHills:
                     'url(./src/launch-countdown-timer/images/pattern-hills.svg)',
+                icdfCardBack:
+                    'url(./src/interactive-card-details-form/images/bg-card-back.png)',
+                icdfCardFront:
+                    'url(./src/interactive-card-details-form/images/bg-card-front.png)',
+                icdfCardLogo:
+                    'url(./src/interactive-card-details-form/images/card-logo.svg)',
+                icdfDesktop:
+                    'url(./src/interactive-card-details-form/images/bg-main-desktop.png)',
+                icdfMobile:
+                    'url(./src/interactive-card-details-form/images/bg-main-mobile.png)',
+                icdfIconComplete:
+                    'url(./src/interactive-card-details-form/images/icon-complete.svg)',
             },
 
             colors: {
