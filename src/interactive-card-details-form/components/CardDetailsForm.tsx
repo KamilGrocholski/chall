@@ -4,23 +4,37 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import Field from './common/Field'
 import TextInput from './common/TextInput'
 import { useCardDetails } from '../context/CardDetailsContext'
+import { useEffect } from 'react'
 
 const CardDetailsForm: React.FC = () => {
-    const [cardDetails, setCardDetails] = useCardDetails()
+    const [cardDetails, setCardDetails, { setIsCreated }] = useCardDetails()
 
     const {
         handleSubmit,
         register,
         formState: { errors },
+        watch,
     } = useForm<CardDetails>({
+        mode: 'all',
         resolver: zodResolver(cardDetailsSchema),
         defaultValues: cardDetails,
     })
+
+    useEffect(() => {
+        const values = watch((data) => {
+            setCardDetails(data)
+        })
+
+        return () => {
+            values.unsubscribe()
+        }
+    }, [watch])
 
     const onValid: SubmitHandler<CardDetails> = (data, e) => {
         e?.preventDefault()
         console.log({ data })
         setCardDetails(data)
+        setIsCreated(true)
     }
 
     const onError: SubmitErrorHandler<CardDetails> = (data, e) => {
@@ -31,7 +45,7 @@ const CardDetailsForm: React.FC = () => {
     return (
         <form
             onSubmit={handleSubmit(onValid, onError)}
-            className='w-fit min-w-[300px] flex flex-col space-y-3'
+            className='w-fit min-w-[300px] flex flex-col space-y-3 z-20'
         >
             <Field
                 htmlFor='name'
@@ -62,26 +76,34 @@ const CardDetailsForm: React.FC = () => {
             <Field
                 htmlFor='expiration-date-month'
                 label='EXP. DATE(MM)'
-                errorMessage={errors.expirationDate?.month?.message}
+                errorMessage={errors.month?.message}
             >
                 <TextInput
                     id='expiration-date-month'
-                    isError={!!errors.expirationDate?.month?.message}
+                    type='number'
+                    isError={!!errors.month?.message}
                     placeholder='MM'
-                    {...register('expirationDate.month')}
+                    {...register('month', {
+                        valueAsNumber: true,
+                        min: 1,
+                        max: 12,
+                    })}
                 />
             </Field>
 
             <Field
                 htmlFor='expiration-date-year'
                 label='EXP. DATE(YY)'
-                errorMessage={errors.expirationDate?.year?.message}
+                errorMessage={errors.year?.message}
             >
                 <TextInput
                     id='expiration-date-year'
-                    isError={false}
+                    type='number'
+                    isError={!!errors.year?.message}
                     placeholder='YY'
-                    {...register('expirationDate.year')}
+                    {...register('year', {
+                        valueAsNumber: true,
+                    })}
                 />
             </Field>
 
@@ -90,11 +112,13 @@ const CardDetailsForm: React.FC = () => {
                     id='cvc'
                     isError={false}
                     placeholder='e.g. 123'
-                    {...register('cvc')}
+                    {...register('cvc', {
+                        valueAsNumber: true,
+                    })}
                 />
             </Field>
 
-            <button className='text-white rounded-md bg-violet-900 text-center w-full py-2'>
+            <button className='text-white rounded-md bg-violet-900 text-center w-full py-3'>
                 Confirm
             </button>
         </form>
@@ -108,9 +132,10 @@ export type CardDetails = z.input<typeof cardDetailsSchema>
 export const cardDetailsSchema = z.object({
     name: z.string(),
     number: z.string(),
-    expirationDate: z.object({
-        month: z.string(),
-        year: z.string(),
-    }),
-    cvc: z.string(),
+    month: z.number().min(1).max(12),
+    year: z
+        .number()
+        .min(parseInt(new Date().getFullYear().toString().slice(2), 10))
+        .max(99),
+    cvc: z.number().min(100).max(999),
 })
