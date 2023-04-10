@@ -26,6 +26,8 @@ module.exports = {
                     'url(./src/interactive-card-details-form/images/bg-main-mobile.png)',
                 icdfIconComplete:
                     'url(./src/interactive-card-details-form/images/icon-complete.svg)',
+                pcBgTop: 'url(./src/pricing-component/images/bg-top.svg)',
+                pcBgBottom: 'url(./src/pricing-component/images/bg-bottom.svg)',
             },
 
             colors: {
@@ -62,6 +64,9 @@ module.exports = {
                         blue: '#6ef3f7',
                         purple: '#d981f9',
                     },
+                },
+                cp: {
+                    primary: '#8c92e7',
                 },
             },
             animation: {

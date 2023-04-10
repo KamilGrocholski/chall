@@ -98,6 +98,7 @@ const CardDetailsForm: React.FC = () => {
             >
                 <TextInput
                     id='expiration-date-year'
+                    inputMode='numeric'
                     type='number'
                     isError={!!errors.year?.message}
                     placeholder='YY'
@@ -131,7 +132,7 @@ export type CardDetails = z.input<typeof cardDetailsSchema>
 
 export const cardDetailsSchema = z.object({
     name: z.string(),
-    number: z.string(),
+    number: z.string().min(16).max(16),
     month: z.number().min(1).max(12),
     year: z
         .number()
