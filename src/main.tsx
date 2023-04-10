@@ -10,6 +10,7 @@ import PomodoroPage from './pomodoro'
 import { SettingsProvider } from './pomodoro/context/SettingsContext'
 import InteractiveCardDetailsFormPage from './interactive-card-details-form'
 import { CardDetailsProvider } from './interactive-card-details-form/context/CardDetailsContext'
+import PricingComponentPage from './pricing-component'
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
                 <InteractiveCardDetailsFormPage />
             </CardDetailsProvider>
         ),
+    },
+    {
+        path: '/pricing-component',
+        element: <PricingComponentPage />,
     },
 ])
 
