@@ -12,6 +12,8 @@ import InteractiveCardDetailsFormPage from './interactive-card-details-form'
 import { CardDetailsProvider } from './interactive-card-details-form/context/CardDetailsContext'
 import PricingComponentPage from './pricing-component'
 import FyloLandingPage from './fylo-landing-page'
+import JobsListingPage from './jobs-listing'
+import { JobsProvider } from './jobs-listing/JobsContext'
 
 const router = createBrowserRouter([
     {
@@ -55,6 +57,14 @@ const router = createBrowserRouter([
     {
         path: '/fylo-landing-page',
         element: <FyloLandingPage />,
+    },
+    {
+        path: '/jobs-listing',
+        element: (
+            <JobsProvider>
+                <JobsListingPage />
+            </JobsProvider>
+        ),
     },
 ])
 
