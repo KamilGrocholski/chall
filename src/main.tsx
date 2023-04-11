@@ -11,6 +11,7 @@ import { SettingsProvider } from './pomodoro/context/SettingsContext'
 import InteractiveCardDetailsFormPage from './interactive-card-details-form'
 import { CardDetailsProvider } from './interactive-card-details-form/context/CardDetailsContext'
 import PricingComponentPage from './pricing-component'
+import FyloLandingPage from './fylo-landing-page'
 
 const router = createBrowserRouter([
     {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
     {
         path: '/pricing-component',
         element: <PricingComponentPage />,
+    },
+    {
+        path: '/fylo-landing-page',
+        element: <FyloLandingPage />,
     },
 ])
 

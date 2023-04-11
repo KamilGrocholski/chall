@@ -68,6 +68,11 @@ module.exports = {
                 cp: {
                     primary: '#8c92e7',
                 },
+                fylo: {
+                    bg: '#1c2230',
+                    primary: '#41afd0',
+                    active: '#5ab0ca',
+                },
             },
             animation: {
                 flip: 'flip 1s cubic-bezier(0, 0, 0.2, 1) infinite',
@@ -86,5 +91,8 @@ module.exports = {
             },
         },
     },
-    plugins: [require('@tailwindcss/forms')],
+    plugins: [
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/typography'),
+    ],
 }
