@@ -18,6 +18,6 @@ const config = {
          */
         require.resolve('prettier-plugin-tailwindcss'),
     ],
-};
+}
 
-module.exports = config;
+module.exports = config
