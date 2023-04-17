@@ -2,16 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    html {
-        /* font-family: 'Bank Gothic', sans-serif; */
-    }
-
-    body {
-        /* @apply bg-slate-300; */
-    }
-}
-
 @layer components {
     .slider {
         background: theme('colors.pg.dark');

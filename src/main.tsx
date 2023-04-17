@@ -1,19 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import FyloLandingPage from './fylo-landing-page';
-import InteractiveCardDetailsFormPage from './interactive-card-details-form';
-import { CardDetailsProvider } from './interactive-card-details-form/context/CardDetailsContext';
-import JobsListingPage from './jobs-listing';
-import { JobsProvider } from './jobs-listing/JobsContext';
-import LaunchCountdownTimerPage from './launch-countdown-timer';
-import MultistepFormPage from './multi-step-form';
-import PasswordGeneratorPage from './password-generator';
-import PomodoroPage from './pomodoro';
-import { SettingsProvider } from './pomodoro/context/SettingsContext';
-import PricingComponentPage from './pricing-component';
-import Home from './Home';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import './index.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import FyloLandingPage from './fylo-landing-page'
+import InteractiveCardDetailsFormPage from './interactive-card-details-form'
+import { CardDetailsProvider } from './interactive-card-details-form/context/CardDetailsContext'
+import JobsListingPage from './jobs-listing'
+import { JobsProvider } from './jobs-listing/JobsContext'
+import LaunchCountdownTimerPage from './launch-countdown-timer'
+import MultistepFormPage from './multi-step-form'
+import PasswordGeneratorPage from './password-generator'
+import PomodoroPage from './pomodoro'
+import { SettingsProvider } from './pomodoro/context/SettingsContext'
+import PricingComponentPage from './pricing-component'
+import Home from './Home'
+import NewsHomepage from './news-homepage'
 
 const router = createBrowserRouter([
     { index: true, element: <Home /> },
@@ -61,10 +62,14 @@ const router = createBrowserRouter([
             </JobsProvider>
         ),
     },
-]);
+    {
+        path: '/news-homepage',
+        element: <NewsHomepage />,
+    },
+])
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
         <RouterProvider router={router} />
     </React.StrictMode>,
-);
+)
