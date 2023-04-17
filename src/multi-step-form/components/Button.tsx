@@ -21,11 +21,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             className,
             ...rest
         },
-        ref
+        ref,
     ) => {
         return (
             <button
-                type='button'
+                type="button"
                 disabled={disabled}
                 aria-disabled={disabled}
                 {...rest}
@@ -35,13 +35,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                     className,
                     disabled && 'opacity-50',
                     VARIANT[variant],
-                    SIZE[size]
+                    SIZE[size],
                 )}
             >
                 {isLoading ? 'Loading...' : children}
             </button>
         )
-    }
+    },
 )
 
 Button.displayName = 'Button'

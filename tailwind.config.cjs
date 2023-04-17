@@ -27,7 +27,8 @@ module.exports = {
                 icdfIconComplete:
                     'url(../src/interactive-card-details-form/images/icon-complete.svg)',
                 pcBgTop: 'url(../src/pricing-component/images/bg-top.svg)',
-                pcBgBottom: 'url(../src/pricing-component/images/bg-bottom.svg)',
+                pcBgBottom:
+                    'url(../src/pricing-component/images/bg-bottom.svg)',
                 jlBgDesktop:
                     'url(../src/jobs-listing/images/bg-header-desktop.svg)',
                 jlBgMobile:
@@ -82,6 +83,11 @@ module.exports = {
                     secondary: '#283938',
                     accent: '#e3f9f7',
                 },
+                np: {
+                    primary: '#00001a',
+                    secondary: '#f15d51',
+                    accent: '#ecb060',
+                }
             },
             animation: {
                 flip: 'flip 1s cubic-bezier(0, 0, 0.2, 1) infinite',
@@ -104,4 +110,4 @@ module.exports = {
         require('@tailwindcss/forms'),
         require('@tailwindcss/typography'),
     ],
-}
+};

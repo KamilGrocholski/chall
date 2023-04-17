@@ -12,16 +12,16 @@ const Field: React.FC<FieldProps> = ({
     htmlFor,
 }) => {
     return (
-        <div className='flex flex-col space-y-1'>
+        <div className="flex flex-col space-y-1">
             <label
                 htmlFor={htmlFor}
-                className='uppercase text-xs font-semibold tracking-widest'
+                className="uppercase text-xs font-semibold tracking-widest"
             >
                 {label}
             </label>
             {children}
             {errorMessage ? (
-                <small className='text-xs text-red-500'>{errorMessage}</small>
+                <small className="text-xs text-red-500">{errorMessage}</small>
             ) : null}
         </div>
     )

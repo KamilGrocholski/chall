@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import Home from './Home'
 import FyloLandingPage from './fylo-landing-page'
 import InteractiveCardDetailsFormPage from './interactive-card-details-form'
 import { CardDetailsProvider } from './interactive-card-details-form/context/CardDetailsContext'
@@ -9,12 +10,11 @@ import JobsListingPage from './jobs-listing'
 import { JobsProvider } from './jobs-listing/JobsContext'
 import LaunchCountdownTimerPage from './launch-countdown-timer'
 import MultistepFormPage from './multi-step-form'
+import NewsHomepage from './news-homepage'
 import PasswordGeneratorPage from './password-generator'
 import PomodoroPage from './pomodoro'
 import { SettingsProvider } from './pomodoro/context/SettingsContext'
 import PricingComponentPage from './pricing-component'
-import Home from './Home'
-import NewsHomepage from './news-homepage'
 
 const router = createBrowserRouter([
     { index: true, element: <Home /> },

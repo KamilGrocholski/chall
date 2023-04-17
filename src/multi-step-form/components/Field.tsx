@@ -16,20 +16,20 @@ const Field = forwardRef<HTMLLabelElement, FieldProps>(
                 htmlFor={id}
                 {...rest}
                 ref={ref}
-                className='flex flex-col w-full'
+                className="flex flex-col w-full"
             >
-                <span className='font-semibold text-md mb-1 text-primary'>
+                <span className="font-semibold text-md mb-1 text-primary">
                     {label}
                 </span>
                 {children}
                 {errorMessage ? (
-                    <small className='text-sm text-red-500 font-semibold'>
+                    <small className="text-sm text-red-500 font-semibold">
                         {errorMessage}
                     </small>
                 ) : null}
             </label>
         )
-    }
+    },
 )
 
 export default Field

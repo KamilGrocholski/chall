@@ -1,6 +1,6 @@
 import { createContext, useReducer, useState } from 'react'
-import { Color, Font } from '../utils'
 import { useSettings } from '../hooks/useSettings'
+import { Color, Font } from '../utils'
 
 export type TimeSettings = {
     pomodoro: number

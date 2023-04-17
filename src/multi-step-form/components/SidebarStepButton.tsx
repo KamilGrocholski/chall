@@ -20,25 +20,25 @@ const SidebarStepButton = ({
         isToggled ? 'text-primary' : 'text-secondary'
 
     return (
-        <div className='md:flex md:items-center md:gap-4'>
+        <div className="md:flex md:items-center md:gap-4">
             <span
                 className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-300 ease-in-out ${activeStyleBackground(
-                    isCurrentStep
+                    isCurrentStep,
                 )}`}
             >
                 <p
                     className={`transition-colors duration-300 ease-in-out font-semibold ${activeStyleText(
-                        isCurrentStep
+                        isCurrentStep,
                     )}`}
                 >
                     {step + 1}
                 </p>
             </span>
-            <div className='hidden md:block text-start'>
-                <small className='text-xs uppercase text-accent'>
+            <div className="hidden md:block text-start">
+                <small className="text-xs uppercase text-accent">
                     step {step + 1}
                 </small>
-                <p className='font-semibold uppercase text-accent2'>{title}</p>
+                <p className="font-semibold uppercase text-accent2">{title}</p>
             </div>
         </div>
     )

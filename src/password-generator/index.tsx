@@ -1,4 +1,8 @@
+import clsx from 'clsx'
 import { useEffect, useReducer, useState } from 'react'
+import { FaRegCopy } from 'react-icons/fa'
+import { TiArrowRight } from 'react-icons/ti'
+import useCopyToClipboard from './hooks/useCopyToClipboard'
 import {
     Config,
     PASSWORD_STRENGTH,
@@ -6,10 +10,6 @@ import {
     generatePassword,
     getPasswordStrength,
 } from './utils'
-import useCopyToClipboard from './hooks/useCopyToClipboard'
-import clsx from 'clsx'
-import { FaRegCopy } from 'react-icons/fa'
-import { TiArrowRight } from 'react-icons/ti'
 
 const generateDefaultConfig = (): Config => {
     return {

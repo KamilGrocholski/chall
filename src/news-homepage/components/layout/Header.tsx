@@ -31,7 +31,7 @@ const Navigation = () => {
 
 const Header = () => {
     return (
-        <header className="w-full h-24 flex flex-row items-center">
+        <header className="w-full md:mt-12 mt-3 h-24 flex flex-row items-center">
             <div className="flex flex-row grow">
                 <Logo />
             </div>

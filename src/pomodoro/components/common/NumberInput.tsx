@@ -18,16 +18,16 @@ const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
 
         return (
             <input
-                type='number'
+                type="number"
                 onChange={handleChange}
                 min={min}
                 max={max}
                 ref={ref}
                 value={value}
-                className='rounded-lg p-2 bg-p-gray-light border-none w-32'
+                className="rounded-lg p-2 bg-p-gray-light border-none w-32"
             />
         )
-    }
+    },
 )
 
 export default NumberInput

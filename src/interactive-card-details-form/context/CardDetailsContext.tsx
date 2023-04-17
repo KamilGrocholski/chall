@@ -32,7 +32,7 @@ export const CardDetailsProvider: React.FC<{ children: React.ReactNode }> = ({
     >(
         (prev, update) => ({ ...prev, ...update }),
         createInitialState(),
-        createInitialState
+        createInitialState,
     )
 
     function reset() {
@@ -62,7 +62,7 @@ export function useCardDetails(): [
         isCreated: ContextType['isCreated']
         setIsCreated: ContextType['setIsCreated']
     },
-    () => void
+    () => void,
 ] {
     const { cardDetails, setCardDetails, isCreated, setIsCreated, reset } =
         useContext(CardDetailsContext)

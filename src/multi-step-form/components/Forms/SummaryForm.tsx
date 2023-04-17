@@ -1,9 +1,9 @@
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form'
-import Form from '../Form'
-import { FormData, Plan } from '../../schemes'
-import useFormContext from '../../hooks/useFormContext'
 import { addons, plan, summary } from '../../data'
+import useFormContext from '../../hooks/useFormContext'
+import { FormData, Plan } from '../../schemes'
 import { composePrice } from '../../utils'
+import Form from '../Form'
 
 const SummaryForm = () => {
     const { setFormData, goTo, formData, submitForm } = useFormContext()
@@ -58,45 +58,45 @@ const SummaryForm = () => {
             title={summary.title}
             description={summary.description}
         >
-            <fieldset className='flex flex-col gap-4 md:gap-6'>
-                <div className='mb-4 flex flex-col rounded-lg bg-gray-100 p-4 divide-y divide-muted'>
-                    <div className='flex items-center justify-between mb-3'>
-                        <div className='flex items-start flex-col'>
-                            <p className='font-bold text-lg capitalize text-primary'>
+            <fieldset className="flex flex-col gap-4 md:gap-6">
+                <div className="mb-4 flex flex-col rounded-lg bg-gray-100 p-4 divide-y divide-muted">
+                    <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-start flex-col">
+                            <p className="font-bold text-lg capitalize text-primary">
                                 {`${formData.type} (${formData.billing})`}
                             </p>
                             <button
-                                type='button'
-                                className='w-fit cursor-pointer font-semibold capitalize text-muted underline transition-colors hover:text-primary'
+                                type="button"
+                                className="w-fit cursor-pointer font-semibold capitalize text-muted underline transition-colors hover:text-primary"
                                 onClick={() => goTo(1)}
                             >
                                 change
                             </button>
                         </div>
-                        <span className='text-primary font-bold'>
+                        <span className="text-primary font-bold">
                             {composePrice(
                                 mustFindType(formData.type).price[
                                     formData.billing
                                 ],
-                                formData.billing
+                                formData.billing,
                             )}
                         </span>
                     </div>
-                    <div className='mb-3 flex flex-col space-y-2 pt-2'>
+                    <div className="mb-3 flex flex-col space-y-2 pt-2">
                         {addons.fields.map((addon) => {
                             if (formData[addon.id]) {
                                 return (
                                     <div
-                                        className='w-full flex flex-row font-semibold justify-between'
+                                        className="w-full flex flex-row font-semibold justify-between"
                                         key={addon.id}
                                     >
-                                        <span className='text-muted'>
+                                        <span className="text-muted">
                                             {addon.name}
                                         </span>
-                                        <span className='text-primary font-semibold'>
+                                        <span className="text-primary font-semibold">
                                             {`+${composePrice(
                                                 addon.price[formData.billing],
-                                                formData.billing
+                                                formData.billing,
                                             )}`}
                                         </span>
                                     </div>
@@ -105,14 +105,14 @@ const SummaryForm = () => {
                         })}
                     </div>
                 </div>
-                <div className='flex items-center justify-between p-4'>
-                    <p className='text-muted font-semibold'>
+                <div className="flex items-center justify-between p-4">
+                    <p className="text-muted font-semibold">
                         Total{' '}
                         {`(per ${
                             formData.billing === 'Yearly' ? 'year' : 'month'
                         })`}
                     </p>
-                    <span className='text-accent font-bold text-lg'>
+                    <span className="text-accent font-bold text-lg">
                         {composePrice(getTotalPrice(), formData.billing)}
                     </span>
                 </div>

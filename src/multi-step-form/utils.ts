@@ -19,7 +19,7 @@ const BILLING_SIGNS = {
 export function composePrice(
     value: number,
     billing: FormData['billing'],
-    currencySign: string = '$'
+    currencySign: string = '$',
 ): string {
     return `${currencySign}${value}/${BILLING_SIGNS[billing]}`
 }

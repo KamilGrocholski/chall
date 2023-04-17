@@ -1,7 +1,7 @@
 import clsx from 'clsx'
-import useJobs, { Job } from './JobsContext'
-import { FaTimes } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
+import { FaTimes } from 'react-icons/fa'
+import useJobs, { Job } from './JobsContext'
 import LogoPlaceholder from './images/photosnap.svg'
 
 const JobsListingPage = () => {

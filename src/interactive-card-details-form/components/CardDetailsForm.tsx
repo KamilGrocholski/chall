@@ -1,10 +1,10 @@
-import { z } from 'zod'
-import { useForm, SubmitHandler, SubmitErrorHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect } from 'react'
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { useCardDetails } from '../context/CardDetailsContext'
 import Field from './common/Field'
 import TextInput from './common/TextInput'
-import { useCardDetails } from '../context/CardDetailsContext'
-import { useEffect } from 'react'
 
 const CardDetailsForm: React.FC = () => {
     const [cardDetails, setCardDetails, { setIsCreated }] = useCardDetails()

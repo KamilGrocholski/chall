@@ -1,5 +1,5 @@
-import { FormContextProvider } from './Context';
-import MultistepForm from './components/Forms/MultistepForm';
+import { FormContextProvider } from './Context'
+import MultistepForm from './components/Forms/MultistepForm'
 
 const MultistepFormPage = () => {
     return (
@@ -8,7 +8,7 @@ const MultistepFormPage = () => {
                 <MultistepForm />
             </main>
         </FormContextProvider>
-    );
-};
+    )
+}
 
-export default MultistepFormPage;
+export default MultistepFormPage

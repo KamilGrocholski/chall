@@ -1,12 +1,12 @@
 import clsx from 'clsx'
+import { BsCheck } from 'react-icons/bs'
+import { IoMdClose } from 'react-icons/io'
 import useSettingsContext, { useSettings } from '../hooks/useSettings'
+import { COLOR } from '../utils'
 import Divider from './common/Divider'
 import Field from './common/Field'
 import Modal from './common/Modal'
 import NumberInput from './common/NumberInput'
-import { BsCheck } from 'react-icons/bs'
-import { IoMdClose } from 'react-icons/io'
-import { COLOR } from '../utils'
 
 const SettingsModal: React.FC<{ isOpen: boolean; close(): void }> = ({
     isOpen,
@@ -27,24 +27,24 @@ const SettingsModal: React.FC<{ isOpen: boolean; close(): void }> = ({
         <Modal isOpen={isOpen} close={close}>
             <form
                 onSubmit={handleSubmit}
-                className='relative bg-white rounded-3xl text-p-gray-dark w-fit'
+                className="relative bg-white rounded-3xl text-p-gray-dark w-fit"
             >
-                <div className='flex w-full justify-between px-7 py-7'>
-                    <h1 className='text-3xl font-bold'>Settings</h1>
+                <div className="flex w-full justify-between px-7 py-7">
+                    <h1 className="text-3xl font-bold">Settings</h1>
                     <button onClick={close}>
-                        <IoMdClose className='text-p-gray-muted font-bold text-xl' />
+                        <IoMdClose className="text-p-gray-muted font-bold text-xl" />
                     </button>
                 </div>
 
                 <Divider />
 
-                <div className='px-7 flex flex-col space-y-4 pb-12 pt-5'>
+                <div className="px-7 flex flex-col space-y-4 pb-12 pt-5">
                     <article>
-                        <h2 className='font-bold mb-3 tracking-widest uppercase'>
+                        <h2 className="font-bold mb-3 tracking-widest uppercase">
                             Time (Minutes)
                         </h2>
-                        <fieldset className='grid grid-cols-3 gap-3'>
-                            <Field label='pomodoro'>
+                        <fieldset className="grid grid-cols-3 gap-3">
+                            <Field label="pomodoro">
                                 <NumberInput
                                     min={0}
                                     max={255}
@@ -54,7 +54,7 @@ const SettingsModal: React.FC<{ isOpen: boolean; close(): void }> = ({
                                     }
                                 />
                             </Field>
-                            <Field label='short break'>
+                            <Field label="short break">
                                 <NumberInput
                                     min={0}
                                     max={255}
@@ -64,7 +64,7 @@ const SettingsModal: React.FC<{ isOpen: boolean; close(): void }> = ({
                                     }
                                 />
                             </Field>
-                            <Field label='long break'>
+                            <Field label="long break">
                                 <NumberInput
                                     min={0}
                                     max={255}
@@ -79,18 +79,18 @@ const SettingsModal: React.FC<{ isOpen: boolean; close(): void }> = ({
 
                     <Divider />
 
-                    <article className='flex flex-row justify-between items-center'>
-                        <h3 className='text-sm font-bold tracking-widest uppercase'>
+                    <article className="flex flex-row justify-between items-center">
+                        <h3 className="text-sm font-bold tracking-widest uppercase">
                             Font
                         </h3>
 
-                        <fieldset className='flex flex-row gap-3'>
+                        <fieldset className="flex flex-row gap-3">
                             <OptionButton
                                 onClick={() => setFont('A')}
                                 className={clsx(
                                     font === 'A'
                                         ? 'bg-p-gray-dark text-white'
-                                        : 'bg-p-gray-light text-p-gray-dark'
+                                        : 'bg-p-gray-light text-p-gray-dark',
                                 )}
                             >
                                 Aa
@@ -100,7 +100,7 @@ const SettingsModal: React.FC<{ isOpen: boolean; close(): void }> = ({
                                 className={clsx(
                                     font === 'B'
                                         ? 'bg-p-gray-dark text-white'
-                                        : 'bg-p-gray-light text-p-gray-dark'
+                                        : 'bg-p-gray-light text-p-gray-dark',
                                 )}
                             >
                                 Aa
@@ -110,7 +110,7 @@ const SettingsModal: React.FC<{ isOpen: boolean; close(): void }> = ({
                                 className={clsx(
                                     font === 'C'
                                         ? 'bg-p-gray-dark text-white'
-                                        : 'bg-p-gray-light text-p-gray-dark'
+                                        : 'bg-p-gray-light text-p-gray-dark',
                                 )}
                             >
                                 Aa
@@ -120,12 +120,12 @@ const SettingsModal: React.FC<{ isOpen: boolean; close(): void }> = ({
 
                     <Divider />
 
-                    <article className='flex flex-row justify-between items-center'>
-                        <h3 className='text-sm font-bold tracking-widest uppercase'>
+                    <article className="flex flex-row justify-between items-center">
+                        <h3 className="text-sm font-bold tracking-widest uppercase">
                             Color
                         </h3>
 
-                        <fieldset className='flex flex-row gap-3'>
+                        <fieldset className="flex flex-row gap-3">
                             <OptionButton
                                 onClick={() => setColor('red')}
                                 className={COLOR['red'].bg}
@@ -148,12 +148,12 @@ const SettingsModal: React.FC<{ isOpen: boolean; close(): void }> = ({
                     </article>
                 </div>
 
-                <div className='absolute -bottom-4 left-0 right-0 bg-transparent'>
+                <div className="absolute -bottom-4 left-0 right-0 bg-transparent">
                     <button
-                        type='submit'
+                        type="submit"
                         className={clsx(
                             'px-10 py-3 w-fit mx-auto flex rounded-3xl text-white font-semibold',
-                            COLOR[originSettings.color].bg
+                            COLOR[originSettings.color].bg,
                         )}
                     >
                         Apply
@@ -177,11 +177,11 @@ const OptionButton: React.FC<OptionButtonProps> = ({
 }) => {
     return (
         <button
-            type='button'
+            type="button"
             onClick={onClick}
             className={clsx(
                 'rounded-full h-8 w-8 flex items-center justify-center',
-                className
+                className,
             )}
         >
             {children}

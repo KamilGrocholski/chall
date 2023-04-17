@@ -1,12 +1,11 @@
-import useFormContext from '../../hooks/useFormContext'
 import { tabs } from '../../Context'
-import PersonalInfoForm from './PersonalInfoForm'
-import PlanForm from './PlanForm'
-import AddOnsForm from './AddOnsForm'
-import SummaryForm from './SummaryForm'
-
+import useFormContext from '../../hooks/useFormContext'
 import Sidebar from '../Sidebar'
 import ThankYou from '../ThankYou'
+import AddOnsForm from './AddOnsForm'
+import PersonalInfoForm from './PersonalInfoForm'
+import PlanForm from './PlanForm'
+import SummaryForm from './SummaryForm'
 
 const MultistepForm = () => {
     const { step, isConfirmed } = useFormContext()
@@ -14,7 +13,7 @@ const MultistepForm = () => {
     return (
         <>
             <Sidebar />
-            <section className='w-full min-h-[600px] px-5'>
+            <section className="w-full min-h-[600px] px-5">
                 {isConfirmed ? (
                     <ThankYou />
                 ) : tabs[step] === 'Your info' ? (

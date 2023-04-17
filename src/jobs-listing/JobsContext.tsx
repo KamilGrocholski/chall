@@ -1,4 +1,3 @@
-import data from './data.json'
 import {
     createContext,
     useContext,
@@ -6,6 +5,7 @@ import {
     useReducer,
     useState,
 } from 'react'
+import data from './data.json'
 
 export type Job = {
     id: number
@@ -24,7 +24,7 @@ export type Job = {
 }
 
 export type JobsFilter<
-    T = Pick<Job, 'role' | 'level' | 'languages' | 'tools'>
+    T = Pick<Job, 'role' | 'level' | 'languages' | 'tools'>,
 > = {
     [Key in keyof T]: T[Key] extends Array<any> ? T[Key] : T[Key][]
 }
@@ -71,7 +71,7 @@ export const JobsProvider: React.FC<{ children: React.ReactElement }> = ({
             ...update,
         }),
         createInitialJobsFilterState(),
-        createInitialJobsFilterState
+        createInitialJobsFilterState,
     )
 
     useEffect(() => {
@@ -111,8 +111,8 @@ export const JobsProvider: React.FC<{ children: React.ReactElement }> = ({
                 filter.languages.length &&
                 job.languages.some((language) =>
                     filter.languages.some(
-                        (filterLanguage) => language === filterLanguage
-                    )
+                        (filterLanguage) => language === filterLanguage,
+                    ),
                 )
             ) {
                 newFilteredJobs.push(job)
@@ -121,7 +121,7 @@ export const JobsProvider: React.FC<{ children: React.ReactElement }> = ({
             if (
                 filter.tools.length &&
                 job.tools.some((tool) =>
-                    filter.tools.some((filterTool) => tool === filterTool)
+                    filter.tools.some((filterTool) => tool === filterTool),
                 )
             ) {
                 newFilteredJobs.push(job)

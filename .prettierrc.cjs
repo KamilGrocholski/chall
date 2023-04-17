@@ -6,8 +6,10 @@
 const config = {
     printWidth: 80,
     trailingComma: 'all',
-    // endOfLine: 'auto',
+    endOfLine: 'auto',
     singleQuote: true,
+    tabWidth: 4,
+    semi: false,
     importOrder: ['___', '__', '<THIRD_PARTY_MODULES>', '^[./]'],
     importOrderSortSpecifiers: true,
     tailwindConfig: './www/tailwind.config.ts',
@@ -18,6 +20,6 @@ const config = {
          */
         require.resolve('prettier-plugin-tailwindcss'),
     ],
-}
+};
 
-module.exports = config
+module.exports = config;

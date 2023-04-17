@@ -8,23 +8,23 @@ const BillingToggle: React.FC<{
         isToggled ? 'text-primary' : 'text-muted'
 
     return (
-        <div className='flex h-10 w-full items-center justify-center gap-8 rounded-lg bg-gray-50'>
+        <div className="flex h-10 w-full items-center justify-center gap-8 rounded-lg bg-gray-50">
             <p
                 className={`font-bold capitalize transition-colors ${activeStyle(
-                    currentBilling !== 'Yearly'
+                    currentBilling !== 'Yearly',
                 )}`}
             >
                 monthly
             </p>
             <label
-                htmlFor='yearlySubscription'
-                className='relative inline-flex cursor-pointer items-center'
+                htmlFor="yearlySubscription"
+                className="relative inline-flex cursor-pointer items-center"
             >
                 <input
-                    name='yearlySubscription'
-                    id='yearlySubscription'
-                    type='checkbox'
-                    className='peer sr-only'
+                    name="yearlySubscription"
+                    id="yearlySubscription"
+                    type="checkbox"
+                    className="peer sr-only"
                     onChange={onClick}
                     checked={currentBilling === 'Yearly'}
                 />
@@ -32,7 +32,7 @@ const BillingToggle: React.FC<{
             </label>
             <p
                 className={`font-bold capitalize transition-colors ${activeStyle(
-                    currentBilling === 'Yearly'
+                    currentBilling === 'Yearly',
                 )}`}
             >
                 yearly

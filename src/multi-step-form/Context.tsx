@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react'
-import { FormData } from './schemes'
 import { useForm } from 'react-hook-form'
+import { FormData } from './schemes'
 
 export const tabs = ['Your info', 'Select plan', 'Add-ons', 'Summary'] as const
 

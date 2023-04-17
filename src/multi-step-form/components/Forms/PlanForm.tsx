@@ -1,16 +1,16 @@
 import {
+    Controller,
     SubmitErrorHandler,
     SubmitHandler,
     useForm,
-    Controller,
 } from 'react-hook-form'
-import Form from '../Form'
-import { Plan } from '../../schemes'
-import useFormContext from '../../hooks/useFormContext'
-import PlanButton from '../PlanButton'
 import { plan } from '../../data'
-import BillingToggle from '../BillingToggle'
+import useFormContext from '../../hooks/useFormContext'
+import { Plan } from '../../schemes'
 import { composePrice } from '../../utils'
+import BillingToggle from '../BillingToggle'
+import Form from '../Form'
+import PlanButton from '../PlanButton'
 
 const PlanForm = () => {
     const { next, setFormData, formData } = useFormContext()
@@ -38,12 +38,12 @@ const PlanForm = () => {
             title={plan.title}
             description={plan.description}
         >
-            <fieldset className='flex flex-col gap-4 md:gap-6'>
+            <fieldset className="flex flex-col gap-4 md:gap-6">
                 <Controller
-                    name='type'
+                    name="type"
                     control={control}
                     render={({ field }) => (
-                        <div className='flex flex-col gap-3 md:grid md:grid-cols-3'>
+                        <div className="flex flex-col gap-3 md:grid md:grid-cols-3">
                             {plan.fields.map((type) => (
                                 <PlanButton
                                     key={type.id}
@@ -57,7 +57,7 @@ const PlanForm = () => {
                                     desc={type.desc[formData.billing]}
                                     priceInfo={composePrice(
                                         type.price[formData.billing],
-                                        formData.billing
+                                        formData.billing,
                                     )}
                                 />
                             ))}
@@ -65,7 +65,7 @@ const PlanForm = () => {
                     )}
                 />
                 <Controller
-                    name='billing'
+                    name="billing"
                     control={control}
                     render={({ field }) => (
                         <BillingToggle
@@ -75,7 +75,7 @@ const PlanForm = () => {
                                     'billing',
                                     field.value === 'Monthly'
                                         ? 'Yearly'
-                                        : 'Monthly'
+                                        : 'Monthly',
                                 )
                                 setFormData(getValues())
                             }}

@@ -15,7 +15,7 @@ export default function useSettingsContext(): Settings & SettingsSetters {
 }
 
 export function useSettings(
-    initialSettings: Settings
+    initialSettings: Settings,
 ): Settings & SettingsSetters {
     const [time, setTime] = useReducer<
         (prev: TimeSettings, update: Partial<TimeSettings>) => TimeSettings

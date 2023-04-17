@@ -18,40 +18,40 @@ const LaunchCountdownTimerPage: React.FC<LaunchCountdownTimerProps> = ({}) => {
     } = useTimer(date)
 
     return (
-        <div className='relative h-screen w-full bg-gradient-to-b from-lct-sky to-lct-hills'>
-            <div className='w-full h-full bg-stars'></div>
+        <div className="relative h-screen w-full bg-gradient-to-b from-lct-sky to-lct-hills">
+            <div className="w-full h-full bg-stars"></div>
 
-            <div className='absolute inset-0 h-full w-full flex items-center'>
-                <div className='flex flex-col space-y-20 mx-auto'>
-                    <h1 className='text-lg lg:text-3xl tracking-wider text-center uppercase text-white'>
+            <div className="absolute inset-0 h-full w-full flex items-center">
+                <div className="flex flex-col space-y-20 mx-auto">
+                    <h1 className="text-lg lg:text-3xl tracking-wider text-center uppercase text-white">
                         We're launching soon
                     </h1>
-                    <div className='flex flex-row gap-2 lg:gap-8 w-fit h-fit mx-auto'>
+                    <div className="flex flex-row gap-2 lg:gap-8 w-fit h-fit mx-auto">
                         <NumberBox
                             number={days}
-                            unit='days'
+                            unit="days"
                             flip={shouldFlip(prevDays, days)}
                         />
                         <NumberBox
                             number={hours}
-                            unit='hours'
+                            unit="hours"
                             flip={shouldFlip(prevHours, hours)}
                         />
                         <NumberBox
                             number={minutes}
-                            unit='minutes'
+                            unit="minutes"
                             flip={shouldFlip(prevMinutes, minutes)}
                         />
                         <NumberBox
                             number={seconds}
-                            unit='seconds'
+                            unit="seconds"
                             flip={shouldFlip(prevSeconds, seconds)}
                         />
                     </div>
                 </div>
             </div>
 
-            <div className='absolute bottom-0 left-0 right-0 h-48 bg-patternHills flex items-center'>
+            <div className="absolute bottom-0 left-0 right-0 h-48 bg-patternHills flex items-center">
                 <SocialIcons />
             </div>
         </div>

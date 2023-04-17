@@ -12,7 +12,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     ({ placeholder, id, className, isError, ...rest }, ref) => {
         return (
             <input
-                type='text'
+                type="text"
                 id={id}
                 placeholder={placeholder}
                 aria-placeholder={placeholder}
@@ -21,11 +21,11 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
                 className={clsx(
                     'border placeholder-gray-400 py-2 px-3 rounded-md border-gray-300',
                     isError && 'border-red-500 outline-red-500',
-                    className
+                    className,
                 )}
             />
         )
-    }
+    },
 )
 
 export default TextInput
