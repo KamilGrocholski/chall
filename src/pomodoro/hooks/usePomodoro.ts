@@ -28,7 +28,7 @@ const usePomodoro = (config: PomodoroConfig): PomodoroHook => {
     const [timeLeft, setTimeLeft] = useState(workTime)
     const [isRunning, setIsRunning] = useState(false)
 
-    const timerRef = useRef<number>()
+    const timerRef = useRef<NodeJS.Timer>()
 
     const switchToNextPhase = () => {
         setIsRunning(false)

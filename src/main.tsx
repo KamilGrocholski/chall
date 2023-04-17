@@ -1,34 +1,29 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Layout from './Layout'
-import MultistepFormPage from './multi-step-form'
-import LaunchCountdownTimerPage from './launch-countdown-timer'
-import PasswordGeneratorPage from './password-generator'
-import PomodoroPage from './pomodoro'
-import { SettingsProvider } from './pomodoro/context/SettingsContext'
-import InteractiveCardDetailsFormPage from './interactive-card-details-form'
-import { CardDetailsProvider } from './interactive-card-details-form/context/CardDetailsContext'
-import PricingComponentPage from './pricing-component'
-import FyloLandingPage from './fylo-landing-page'
-import JobsListingPage from './jobs-listing'
-import { JobsProvider } from './jobs-listing/JobsContext'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import FyloLandingPage from './fylo-landing-page';
+import InteractiveCardDetailsFormPage from './interactive-card-details-form';
+import { CardDetailsProvider } from './interactive-card-details-form/context/CardDetailsContext';
+import JobsListingPage from './jobs-listing';
+import { JobsProvider } from './jobs-listing/JobsContext';
+import LaunchCountdownTimerPage from './launch-countdown-timer';
+import MultistepFormPage from './multi-step-form';
+import PasswordGeneratorPage from './password-generator';
+import PomodoroPage from './pomodoro';
+import { SettingsProvider } from './pomodoro/context/SettingsContext';
+import PricingComponentPage from './pricing-component';
+import Home from './Home';
 
 const router = createBrowserRouter([
+    { index: true, element: <Home /> },
     {
         path: '/launch-countdown-timer',
         element: <LaunchCountdownTimerPage />,
     },
     {
-        path: '/layout',
-        element: <Layout />,
-        children: [
-            {
-                path: 'multi-step-form',
-                element: <MultistepFormPage />,
-            },
-        ],
+        path: '/multi-step-form',
+        element: <MultistepFormPage />,
     },
     {
         path: '/password-generator',
@@ -66,10 +61,10 @@ const router = createBrowserRouter([
             </JobsProvider>
         ),
     },
-])
+]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
         <RouterProvider router={router} />
-    </React.StrictMode>
-)
+    </React.StrictMode>,
+);
