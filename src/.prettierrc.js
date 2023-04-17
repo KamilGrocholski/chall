@@ -6,7 +6,7 @@
 const config = {
     printWidth: 80,
     trailingComma: 'all',
-    endOfLine: 'auto',
+    // endOfLine: 'auto',
     singleQuote: true,
     importOrder: ['___', '__', '<THIRD_PARTY_MODULES>', '^[./]'],
     importOrderSortSpecifiers: true,

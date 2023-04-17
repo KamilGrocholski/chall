@@ -45,44 +45,44 @@ const CardDetailsForm: React.FC = () => {
     return (
         <form
             onSubmit={handleSubmit(onValid, onError)}
-            className='w-fit min-w-[300px] flex flex-col space-y-3 z-20'
+            className="w-fit min-w-[300px] flex flex-col space-y-3 z-20"
         >
             <Field
-                htmlFor='name'
-                label='Name'
+                htmlFor="name"
+                label="Name"
                 errorMessage={errors.name?.message}
             >
                 <TextInput
-                    id='name'
+                    id="name"
                     isError={!!errors.name?.message}
-                    placeholder='e.g. Felicia Leire'
+                    placeholder="e.g. Felicia Leire"
                     {...register('name')}
                 />
             </Field>
 
             <Field
-                htmlFor='number'
-                label='Number'
+                htmlFor="number"
+                label="Number"
                 errorMessage={errors.name?.message}
             >
                 <TextInput
-                    id='number'
+                    id="number"
                     isError={!!errors.number?.message}
-                    placeholder='e.g. 1111 1111 1111 1111'
+                    placeholder="e.g. 1111 1111 1111 1111"
                     {...register('number')}
                 />
             </Field>
 
             <Field
-                htmlFor='expiration-date-month'
-                label='EXP. DATE(MM)'
+                htmlFor="expiration-date-month"
+                label="EXP. DATE(MM)"
                 errorMessage={errors.month?.message}
             >
                 <TextInput
-                    id='expiration-date-month'
-                    type='number'
+                    id="expiration-date-month"
+                    type="number"
                     isError={!!errors.month?.message}
-                    placeholder='MM'
+                    placeholder="MM"
                     {...register('month', {
                         valueAsNumber: true,
                         min: 1,
@@ -92,34 +92,34 @@ const CardDetailsForm: React.FC = () => {
             </Field>
 
             <Field
-                htmlFor='expiration-date-year'
-                label='EXP. DATE(YY)'
+                htmlFor="expiration-date-year"
+                label="EXP. DATE(YY)"
                 errorMessage={errors.year?.message}
             >
                 <TextInput
-                    id='expiration-date-year'
-                    inputMode='numeric'
-                    type='number'
+                    id="expiration-date-year"
+                    inputMode="numeric"
+                    type="number"
                     isError={!!errors.year?.message}
-                    placeholder='YY'
+                    placeholder="YY"
                     {...register('year', {
                         valueAsNumber: true,
                     })}
                 />
             </Field>
 
-            <Field htmlFor='cvc' label='cvc' errorMessage={errors.cvc?.message}>
+            <Field htmlFor="cvc" label="cvc" errorMessage={errors.cvc?.message}>
                 <TextInput
-                    id='cvc'
+                    id="cvc"
                     isError={false}
-                    placeholder='e.g. 123'
+                    placeholder="e.g. 123"
                     {...register('cvc', {
                         valueAsNumber: true,
                     })}
                 />
             </Field>
 
-            <button className='text-white rounded-md bg-violet-900 text-center w-full py-3'>
+            <button className="text-white rounded-md bg-violet-900 text-center w-full py-3">
                 Confirm
             </button>
         </form>

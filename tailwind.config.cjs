@@ -8,30 +8,30 @@ module.exports = {
         extend: {
             backgroundImage: {
                 sidebarDesktop:
-                    "url('./src/multi-step-form/assets/images/bg-sidebar-desktop.svg')",
+                    "url('../src/multi-step-form/assets/images/bg-sidebar-desktop.svg')",
                 sidebarMobile:
-                    "url('./src/multi-step-form/assets/images/bg-sidebar-mobile.svg')",
-                stars: 'url(./src/launch-countdown-timer/images/bg-stars.svg)',
+                    "url('../src/multi-step-form/assets/images/bg-sidebar-mobile.svg')",
+                stars: 'url(../src/launch-countdown-timer/images/bg-stars.svg)',
                 patternHills:
-                    'url(./src/launch-countdown-timer/images/pattern-hills.svg)',
+                    'url(../src/launch-countdown-timer/images/pattern-hills.svg)',
                 icdfCardBack:
-                    'url(./src/interactive-card-details-form/images/bg-card-back.png)',
+                    'url(../src/interactive-card-details-form/images/bg-card-back.png)',
                 icdfCardFront:
-                    'url(./src/interactive-card-details-form/images/bg-card-front.png)',
+                    'url(../src/interactive-card-details-form/images/bg-card-front.png)',
                 icdfCardLogo:
-                    'url(./src/interactive-card-details-form/images/card-logo.svg)',
+                    'url(../src/interactive-card-details-form/images/card-logo.svg)',
                 icdfDesktop:
-                    'url(./src/interactive-card-details-form/images/bg-main-desktop.png)',
+                    'url(../src/interactive-card-details-form/images/bg-main-desktop.png)',
                 icdfMobile:
-                    'url(./src/interactive-card-details-form/images/bg-main-mobile.png)',
+                    'url(../src/interactive-card-details-form/images/bg-main-mobile.png)',
                 icdfIconComplete:
-                    'url(./src/interactive-card-details-form/images/icon-complete.svg)',
-                pcBgTop: 'url(./src/pricing-component/images/bg-top.svg)',
-                pcBgBottom: 'url(./src/pricing-component/images/bg-bottom.svg)',
+                    'url(../src/interactive-card-details-form/images/icon-complete.svg)',
+                pcBgTop: 'url(../src/pricing-component/images/bg-top.svg)',
+                pcBgBottom: 'url(../src/pricing-component/images/bg-bottom.svg)',
                 jlBgDesktop:
-                    'url(./src/jobs-listing/images/bg-header-desktop.svg)',
+                    'url(../src/jobs-listing/images/bg-header-desktop.svg)',
                 jlBgMobile:
-                    'url(./src/jobs-listing/images/bg-header-mobile.svg)',
+                    'url(../src/jobs-listing/images/bg-header-mobile.svg)',
             },
 
             colors: {

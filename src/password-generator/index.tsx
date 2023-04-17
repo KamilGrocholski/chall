@@ -1,15 +1,15 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react'
 import {
     Config,
     PASSWORD_STRENGTH,
     PasswordStrengthType,
     generatePassword,
     getPasswordStrength,
-} from './utils';
-import useCopyToClipboard from './hooks/useCopyToClipboard';
-import clsx from 'clsx';
-import { FaRegCopy } from 'react-icons/fa';
-import { TiArrowRight } from 'react-icons/ti';
+} from './utils'
+import useCopyToClipboard from './hooks/useCopyToClipboard'
+import clsx from 'clsx'
+import { FaRegCopy } from 'react-icons/fa'
+import { TiArrowRight } from 'react-icons/ti'
 
 const generateDefaultConfig = (): Config => {
     return {
@@ -18,11 +18,11 @@ const generateDefaultConfig = (): Config => {
         uppercase: true,
         numbers: true,
         symbols: false,
-    };
-};
+    }
+}
 
 const PasswordGeneratorPage = () => {
-    const [showWarning, setShowWarning] = useState(false);
+    const [showWarning, setShowWarning] = useState(false)
 
     const [config, setConfig] = useReducer<
         (prev: Config, update: Partial<Config>) => Config,
@@ -36,9 +36,9 @@ const PasswordGeneratorPage = () => {
                     update.symbols ||
                     update.numbers)
             ) {
-                setShowWarning(false);
+                setShowWarning(false)
             }
-            return { ...prev, ...update };
+            return { ...prev, ...update }
         },
         {
             length: 5,
@@ -48,16 +48,16 @@ const PasswordGeneratorPage = () => {
             symbols: false,
         },
         generateDefaultConfig,
-    );
-    const [password, setPassword] = useState<undefined | string>(undefined);
+    )
+    const [password, setPassword] = useState<undefined | string>(undefined)
 
     function handleGeneratePassowrd(e: React.FormEvent) {
-        e.preventDefault();
+        e.preventDefault()
         try {
-            const password = generatePassword(config);
-            setPassword(password);
+            const password = generatePassword(config)
+            setPassword(password)
         } catch (error) {
-            setShowWarning(true);
+            setShowWarning(true)
         }
     }
 
@@ -124,24 +124,24 @@ const PasswordGeneratorPage = () => {
                 </fieldset>
             </form>
         </div>
-    );
-};
+    )
+}
 
 const Slider: React.FC<{
-    min: number;
-    max: number;
-    disabled?: boolean;
-    value: number;
-    label: string;
-    onChange: (value: number) => void;
+    min: number
+    max: number
+    disabled?: boolean
+    value: number
+    label: string
+    onChange: (value: number) => void
 }> = ({ min, max, value, disabled, onChange, label }) => {
-    const [sliderValue, setSliderValue] = useState(value);
+    const [sliderValue, setSliderValue] = useState(value)
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = Number(event.target.value);
-        setSliderValue(newValue);
-        onChange(newValue);
-    };
+        const newValue = Number(event.target.value)
+        setSliderValue(newValue)
+        onChange(newValue)
+    }
 
     return (
         <div>
@@ -163,13 +163,13 @@ const Slider: React.FC<{
                 data-percent={(sliderValue / max) * 100}
             />
         </div>
-    );
-};
+    )
+}
 
 const Checkbox: React.FC<{
-    label: string;
-    isChecked: boolean;
-    onChange: () => void;
+    label: string
+    isChecked: boolean
+    onChange: () => void
 }> = ({ isChecked, onChange, label }) => {
     return (
         <div className="flex items-center flex-row">
@@ -184,32 +184,32 @@ const Checkbox: React.FC<{
                 {label}
             </label>
         </div>
-    );
-};
+    )
+}
 
 const CopyText: React.FC<{ text?: string; placeholder?: string }> = ({
     text,
     placeholder,
 }) => {
-    const [showCopy, setShowCopy] = useState<boolean>(false);
-    const [, copyFn] = useCopyToClipboard();
+    const [showCopy, setShowCopy] = useState<boolean>(false)
+    const [, copyFn] = useCopyToClipboard()
 
     useEffect(() => {
-        const timeoutId = setTimeout(() => setShowCopy(false), 1000);
+        const timeoutId = setTimeout(() => setShowCopy(false), 1000)
         return () => {
-            clearTimeout(timeoutId);
-        };
-    }, [showCopy]);
+            clearTimeout(timeoutId)
+        }
+    }, [showCopy])
 
     const handleCopyText = () => {
         if (!text) {
-            return;
+            return
         }
-        copyFn(text);
-        setShowCopy(true);
-    };
+        copyFn(text)
+        setShowCopy(true)
+    }
 
-    const isButtonDisabled = !text || !text.length;
+    const isButtonDisabled = !text || !text.length
 
     return (
         <div className="flex flex-row bg-pg-light px-3 py-3 justify-between">
@@ -238,8 +238,8 @@ const CopyText: React.FC<{ text?: string; placeholder?: string }> = ({
                 <FaRegCopy className="text-pg-primary" />
             </button>
         </div>
-    );
-};
+    )
+}
 
 const PasswordStrength: React.FC<{ strength: PasswordStrengthType }> = ({
     strength,
@@ -266,7 +266,7 @@ const PasswordStrength: React.FC<{ strength: PasswordStrengthType }> = ({
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default PasswordGeneratorPage;
+export default PasswordGeneratorPage

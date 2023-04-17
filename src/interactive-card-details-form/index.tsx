@@ -8,8 +8,8 @@ const InteractiveCardDetailsFormPage = () => {
     const [cardDetails, , { isCreated }] = useCardDetails()
 
     return (
-        <div className='flex lg:flex-row flex-col h-screen w-full overflow-hidden'>
-            <aside className='relative bg-icdfDesktop w-full h-[13rem] lg:w-[420px] lg:h-full'>
+        <div className="flex lg:flex-row flex-col h-screen w-full overflow-hidden">
+            <aside className="relative bg-icdfDesktop w-full h-[13rem] lg:w-[420px] lg:h-full">
                 <CardBack cvc={cardDetails.cvc} />
                 <CardFront
                     name={cardDetails.name}
@@ -18,7 +18,7 @@ const InteractiveCardDetailsFormPage = () => {
                     month={cardDetails.month}
                 />
             </aside>
-            <main className='w-fit flex items-center mx-auto justify-center lg:pt-0 pt-32'>
+            <main className="w-fit flex items-center mx-auto justify-center lg:pt-0 pt-32">
                 {isCreated ? <ThankYou /> : <CardDetailsForm />}
             </main>
         </div>
