@@ -1,6 +1,8 @@
 import clsx from 'clsx'
 import useJobs, { Job } from './JobsContext'
 import { FaTimes } from 'react-icons/fa'
+import { useEffect, useState } from 'react'
+import LogoPlaceholder from './images/photosnap.svg'
 
 const JobsListingPage = () => {
     const { jobs, filteredJobs } = useJobs()
@@ -77,14 +79,8 @@ const JobsFilter: React.FC = () => {
 }
 
 // https://vitejs.dev/guide/assets.html#new-url-url-import-meta-url
-function getImageUrl(path: string) {
-    return new URL(path, import.meta.url).href
-}
-
 const JobView: React.FC<Job> = (job) => {
     const { filterActions } = useJobs()
-
-    const logoSrc = getImageUrl(job.logo)
 
     return (
         <div
@@ -95,7 +91,13 @@ const JobView: React.FC<Job> = (job) => {
         >
             <div className="flex flex-row gap-5 lg:pt-0 pt-10">
                 <div className="lg:static absolute -top-12 left-5">
-                    <img src={logoSrc} alt="" className="h-24 w-24" />
+                    <img
+                        src={
+                            'https://static.vecteezy.com/system/resources/previews/008/214/517/original/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg'
+                        }
+                        alt=""
+                        className="h-24 w-24 rounded-full border"
+                    />
                 </div>
 
                 <div className="flex flex-col text-white font-bold gap-2">
