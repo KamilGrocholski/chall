@@ -19,23 +19,24 @@ const newArticles: NewArticle[] = [
     {
         title: 'The Downsides of AI Artistry',
         description:
-            'What are the possible adverse effects of on-demand AI image generatio?',
+            'What are the possible adverse effects of on-demand AI image generation?',
         href: '',
     },
     {
         title: 'Is VC Funding Drying Up?',
-        description: 'Private founding by VC firms is down  50% YOY.',
+        description:
+            'Private founding by VC firms is down  50% YOY. We take a look at what that means.',
         href: '',
     },
 ]
 
 const NewArticlesSection = () => {
     return (
-        <section className="px-4 py-5 flex flex-col bg-np-primary">
+        <section className="px-4 py-8 flex flex-col justify-evenly bg-np-primary">
             <h1 className="text-3xl font-semibold text-np-accent">New</h1>
-            <ul className="flex flex-col divide-y space-y-3">
+            <ul className="flex flex-col divide-y space-y-5">
                 {newArticles.map((article) => (
-                    <li key={article.title} className="py-2">
+                    <li key={article.title} className="py-5">
                         <a
                             href={article.href}
                             className="hover:text-np-accent text-white text-xl font-semibold"
@@ -52,13 +53,13 @@ const NewArticlesSection = () => {
 
 const BigSection = () => {
     return (
-        <section className="flex flex-col justify-between gap-5 md:w-8/12">
+        <section className="flex flex-col justify-between gap-1 md:w-[90%]">
             <div className="md:flex-1">
                 <img src={Big} alt="" />
             </div>
             <div className="grid md:grid-cols-2 grid-cols-1 gap-5 py-3">
                 <div>
-                    <h1 className="text-3xl font-semibold text-np-primary">
+                    <h1 className="text-5xl font-bold text-np-primary">
                         The Bright Future of Web 3.0?
                     </h1>
                 </div>
@@ -104,7 +105,7 @@ const restArticles: RestArticle[] = [
 
 const RestArticlesSection = () => {
     return (
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-5">
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-16">
             {restArticles.map((article, articleIndex) => (
                 <article className="grid grid-cols-3 gap-3">
                     <div className="col-span-1">
@@ -116,7 +117,12 @@ const RestArticlesSection = () => {
                         </span>
                         <div>
                             <h3 className="text-xl pb-1 text-np-primay font-semibold">
-                                {article.title}
+                                <a
+                                    href={article.href}
+                                    className="hover:text-np-accent text-np-primary"
+                                >
+                                    {article.title}
+                                </a>
                             </h3>
                             <p className="text-np-primary text-sm">
                                 {article.description}
@@ -134,7 +140,7 @@ const NewsHomepage = () => {
         <div className="container mx-auto px-4">
             <Header />
             <main>
-                <div className="flex md:flex-row flex-col gap-5">
+                <div className="flex md:flex-row flex-col gap-5 h-fit">
                     <BigSection />
                     <NewArticlesSection />
                 </div>

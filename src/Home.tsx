@@ -12,7 +12,7 @@ const SOLUTIONS_LINKS = [
     { path: '/pricing-component', label: 'Pricing component' },
     { path: '/password-generator', label: 'Password generator' },
     { path: '/pomodoro', label: 'Pomodoro' },
-    // { path: '/news-homepage', label: 'News homepage' },
+    { path: '/news-homepage', label: 'News homepage' },
 ] as const
 
 const EXTERNAL_LINKS = {
